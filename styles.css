@@ -6,36 +6,45 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Slab', serif;
     background: #f4f4f9;
     color: #333;
     scroll-behavior: smooth;
 }
 
-/* Cabeçalho simples sem emojis */
+/* Cabeçalho */
 header {
     background: #007f5f;
     color: white;
-    padding: 100px 20px;
+    padding: 50px 20px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3em;
-    color: #ff0000; /* vermelho do dragão */
+    font-size: 42px;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    margin-bottom: 15px;
 }
 
-header p {
-    font-size: 1.2em;
+header nav a {
     color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffd700; /* dourado claro */
 }
 
 /* Cards de conteúdo */
 .card {
     background: white;
     max-width: 900px;
-    margin: 40px auto;
+    margin: 50px auto;
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -51,20 +60,19 @@ header p {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
     background: #f0f9f9;
 }
 
 .card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2em;
+    font-size: 28px;
     margin-bottom: 15px;
     color: #007f5f;
 }
 
 .card p {
     line-height: 1.6;
-    font-size: 1.1em;
+    font-size: 17px;
 }
 
 /* Animação fade-in */
@@ -84,8 +92,7 @@ header p {
 }
 
 #equipe h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2em;
+    font-size: 28px;
     margin-bottom: 40px;
 }
 
@@ -110,13 +117,13 @@ header p {
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid white;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .team-member:hover img {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .team-member p {
@@ -134,28 +141,16 @@ footer {
 }
 
 footer .logo-footer {
-    width: 120px;
+    width: 180px;   /* logo maior */
     display: block;
-    margin: 0 auto 10px auto;
+    margin: 0 auto 20px auto;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2em;
-    }
-
-    .card {
-        margin: 30px 15px;
-        padding: 30px 20px;
-    }
-
-    .team-member {
-        width: 100px;
-    }
-
-    .team-member img {
-        width: 90px;
-        height: 90px;
-    }
+    header h1 { font-size: 32px; }
+    .card { margin: 30px 15px; padding: 30px 20px; }
+    .team-member { width: 100px; }
+    .team-member img { width: 90px; height: 90px; }
+    footer .logo-footer { width: 140px; }
 }
