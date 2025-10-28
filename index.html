@@ -5,82 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>País de Gales</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="spin-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- Cabeçalho -->
-    <header>
+    <header role="banner">
         <div class="header-content">
             <h1>País de Gales</h1>
-            <nav>
-                <a href="#historia">História</a>
-                <a href="#cultura">Cultura</a>
-                <a href="#curiosidades">Curiosidades</a>
-                <a href="#equipe">Equipe</a>
+            <nav role="navigation" aria-label="Menu principal">
+                <a href="#inicio" role="menuitem">Início</a>
+                <a href="#cultura" role="menuitem">Cultura</a>
+                <a href="#culinaria" role="menuitem">Culinária</a>
+                <a href="#musica" role="menuitem">Música</a>
+                <a href="#roleta" role="menuitem">Roleta</a>
             </nav>
         </div>
     </header>
 
-    <!-- Seções do site -->
-    <main>
-        <section id="historia" class="card">
-            <h2>História</h2>
-            <p>O País de Gales tem castelos medievais e lendas antigas...</p>
+    <main role="main">
+        <section id="inicio" class="card">
+            <h2>Bem-vindo!</h2>
+            <p>Descubra mais sobre o incrível País de Gales, sua cultura, culinária e música!</p>
         </section>
 
         <section id="cultura" class="card">
             <h2>Cultura</h2>
-            <p>O idioma galês, música e danças tradicionais fazem parte do dia a dia...</p>
+            <p>O País de Gales é conhecido por sua forte tradição celta, festivais e o idioma galês, preservado até hoje.</p>
         </section>
 
-        <section id="curiosidades" class="card">
-            <h2>Curiosidades</h2>
-            <p>O dragão vermelho da bandeira é símbolo de coragem e orgulho nacional...</p>
+        <section id="culinaria" class="card">
+            <h2>Culinária</h2>
+            <p>A culinária galesa traz pratos tradicionais como o “Cawl” (ensopado), o “Welsh Cake” e o queijo Caerphilly.</p>
         </section>
 
-        <!-- Seção equipe -->
+        <section id="musica" class="card">
+            <h2>Música</h2>
+            <p>A música galesa é famosa por seus corais e pelo Festival Nacional Eisteddfod, que celebra arte e poesia.</p>
+        </section>
+
+        <!-- Roleta -->
+        <section id="roleta" class="card">
+            <h2>Roleta de Perguntas</h2>
+            <div class="roleta-wrapper">
+                <canvas id="wheelCanvas" width="400" height="400"></canvas>
+                <div class="arrow">▼</div>
+                <img id="centro-roleta" src="assets/roleta.jpg" alt="Centro da Roleta" class="centro-roleta">
+            </div>
+                        <button id="spinButton">
+                <span class="spin-icon">🎡</span>
+                <span class="spin-text">Girar a Roleta</span>
+            </button>
+
+            <div id="pergunta-container" class="hidden pergunta-animation">
+                <h3 id="pergunta" aria-live="polite"></h3>
+                <div id="opcoes" role="group" aria-label="Opções de resposta"></div>
+                <p id="feedback" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- Equipe -->
         <section id="equipe">
             <h2>Equipe</h2>
             <div class="team-container">
-                <div class="team-member">
-                    <img src="assets/alexandre.jpg" alt="Alexandre">
-                    <p>Alexandre</p>
-                </div>
-                <div class="team-member">
-                    <img src="assets/carla.jpg" alt="Carla">
-                    <p>Carla</p>
-                </div>
-                <div class="team-member">
-                    <img src="assets/emily.jpg" alt="Emily">
-                    <p>Emily</p>
-                </div>
-                <div class="team-member">
-                    <img src="assets/fernanda.jpg" alt="Fernanda">
-                    <p>Fernanda</p>
-                </div>
-                <div class="team-member">
-                    <img src="assets/hadassa.jpg" alt="Hadassa">
-                    <p>Hadassa</p>
-                </div>
-                <div class="team-member">
-                    <img src="assets/larissa.jpg" alt="Larissa">
-                    <p>Larissa</p>
-                </div>
-                <div class="team-member">
-                    <img src="assets/milena.jpg" alt="Milena">
-                    <p>Milena</p>
-                </div>
-                <div class="team-member">
-                    <img src="assets/dinho.jpg" alt="Dinho">
-                    <p>Dinho</p>
-                </div>
+                <div class="team-member"><img src="assets/alexandre.jpg" alt="Alexandre"><p>Alexandre</p></div>
+                <div class="team-member"><img src="assets/carla.jpg" alt="Carla"><p>Carla</p></div>
+                <div class="team-member"><img src="assets/emily.jpg" alt="Emily"><p>Emily</p></div>
+                <div class="team-member"><img src="assets/fernanda.jpg" alt="Fernanda"><p>Fernanda</p></div>
+                <div class="team-member"><img src="assets/hadassa.jpg" alt="Hadassa"><p>Hadassa</p></div>
+                <div class="team-member"><img src="assets/larissa.jpg" alt="Larissa"><p>Larissa</p></div>
+                <div class="team-member"><img src="assets/milena.jpg" alt="Milena"><p>Milena</p></div>
+                <div class="team-member"><img src="assets/dinho.jpg" alt="Dinho"><p>Dinho</p></div>
             </div>
         </section>
     </main>
 
-    <!-- Rodapé -->
-    <footer>
+    <footer role="contentinfo">
         <img src="assets/logo.png" alt="IF Sertão-PE" class="logo-footer">
         <p>&copy; 2025 - Trabalho Escolar</p>
     </footer>

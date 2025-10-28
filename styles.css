@@ -1,4 +1,4 @@
-/* Reset básico */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Cabeçalho */
+/* CABEÇALHO */
 header {
     background: #007f5f;
     color: white;
@@ -23,7 +23,6 @@ header {
 
 header h1 {
     font-size: 42px;
-    color: #fff;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
     margin-bottom: 15px;
 }
@@ -33,14 +32,33 @@ header nav a {
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 header nav a:hover {
-    color: #ffd700; /* dourado claro */
+    transform: scale(1.1);
+    color: #ffd700;
+    text-shadow: 0 0 5px rgba(255,215,0,0.5);
 }
 
-/* Cards de conteúdo */
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: #ffd700;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+/* CARDS */
 .card {
     background: white;
     max-width: 900px;
@@ -48,20 +66,13 @@ header nav a:hover {
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    opacity: 0;
-    transform: translateY(20px);
+    transition: all 0.3s ease;
     animation: fadeInUp 0.8s forwards;
 }
 
-.card:nth-child(1) { animation-delay: 0.2s; }
-.card:nth-child(2) { animation-delay: 0.4s; }
-.card:nth-child(3) { animation-delay: 0.6s; }
-
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    background: #f0f9f9;
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .card h2 {
@@ -70,30 +81,385 @@ header nav a:hover {
     color: #007f5f;
 }
 
-.card p {
-    line-height: 1.6;
-    font-size: 17px;
+/* ANIMAÇÃO */
+@keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 
-/* Animação fade-in */
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
+/* ROLETA */
+.roleta-wrapper {
+    position: relative;
+    width: 400px;
+    margin: 20px auto;
+}
+
+#wheelCanvas {
+    border-radius: 50%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    display: block;
+    transition: transform 0.5s ease-out;
+}
+
+.wheel-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.arrow {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    z-index: 3;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-5px);
     }
 }
+    font-size: 30px;
+    z-index: 3;
+}
 
-/* Seção equipe */
+/* Estilos da Equipe */
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.team-member img:hover {
+    transform: scale(1.1);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 30px 10px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    header nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card {
+        margin: 30px 15px;
+        padding: 25px 20px;
+    }
+
+    .roleta-wrapper {
+        width: 300px;
+    }
+
+    #wheelCanvas {
+        width: 300px;
+        height: 300px;
+    }
+
+    .team-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .team-member img {
+        width: 120px;
+        height: 120px;
+    }
+}
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 30px 10px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    header nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card {
+        margin: 30px 15px;
+        padding: 25px 20px;
+    }
+
+    .roleta-wrapper {
+        width: 300px;
+    }
+
+    #wheelCanvas {
+        width: 300px;
+        height: 300px;
+    }
+
+    .team-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .team-member img {
+        width: 120px;
+        height: 120px;
+    }
+}
+    font-size: 30px;
+    z-index: 3;
+}
+
+/* BOTÃO */
+#spinButton {
+    display: block;
+    margin: 20px auto;
+    background: #007f5f;
+    color: white;
+    font-weight: bold;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#spinButton:hover {
+    background: #00b37e;
+    transform: scale(1.05);
+}
+
+/* PERGUNTAS */
+#pergunta-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#pergunta-container.hidden {
+    display: none;
+}
+
+    .pergunta-animation {
+        animation: slideIn 0.5s ease-out;
+    }
+    
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Efeito de confete */
+    @keyframes confetti {
+        0% { transform: translateY(0) rotateZ(0); opacity: 1; }
+        100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; }
+    }
+
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #ffd700;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        animation: confetti 2s ease-out forwards;
+    }
+
+    /* Efeito de brilho ao acertar */
+    @keyframes correct-glow {
+        0% { box-shadow: 0 0 5px #00b37e; }
+        50% { box-shadow: 0 0 20px #00b37e; }
+        100% { box-shadow: 0 0 5px #00b37e; }
+    }
+
+    .correct-answer {
+        animation: correct-glow 1s ease-in-out infinite;
+    }#opcoes button {
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+#opcoes button:hover {
+    background: #00b37e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#feedback {
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Efeitos para a roleta */
+.roleta-wrapper {
+    position: relative;
+    width: 400px;
+    margin: 20px auto;
+    perspective: 1000px;
+}
+
+/* Efeitos de luz e brilho */
+.roleta-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes stopSpin {
+    0% { transform: rotate(5deg); }
+    50% { transform: rotate(-3deg); }
+    100% { transform: rotate(0); }
+}
+
+#wheelCanvas {
+    border-radius: 50%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+#wheelCanvas:hover {
+    transform: rotateX(5deg);
+}
+
+/* Melhorias nos botões de opções */
+#opcoes button {
+    position: relative;
+    overflow: hidden;
+}
+
+#opcoes button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+#opcoes button:hover::after {
+    width: 200%;
+    height: 200%;
+}
+
+#pergunta {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+#opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+#opcoes button {
+    width: 60%;
+    padding: 10px;
+    background: #bbb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#opcoes button:hover {
+    transform: scale(1.05);
+}
+
+/* EQUIPE */
 #equipe {
     background: #007f5f;
     color: white;
     padding: 60px 20px;
     text-align: center;
-}
-
-#equipe h2 {
-    font-size: 28px;
-    margin-bottom: 40px;
 }
 
 .team-container {
@@ -103,54 +469,27 @@ header nav a:hover {
     gap: 30px;
 }
 
-.team-member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 140px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
 .team-member img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    object-fit: cover;
     border: 3px solid white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: 0.3s;
 }
 
 .team-member:hover img {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transform: scale(1.1);
 }
 
-.team-member p {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* Rodapé */
+/* RODAPÉ */
 footer {
-    text-align: center;
-    padding: 40px 20px;
     background: #2c3e50;
     color: white;
-    font-size: 0.9em;
+    text-align: center;
+    padding: 40px 20px;
 }
 
-footer .logo-footer {
-    width: 180px;   /* logo maior */
-    display: block;
-    margin: 0 auto 20px auto;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    header h1 { font-size: 32px; }
-    .card { margin: 30px 15px; padding: 30px 20px; }
-    .team-member { width: 100px; }
-    .team-member img { width: 90px; height: 90px; }
-    footer .logo-footer { width: 140px; }
+.logo-footer {
+    width: 160px;
+    margin-bottom: 20px;
 }
