@@ -23,40 +23,37 @@
 }
 
 /* Estilos da roleta */
+/* O .roleta-wrapper agora é responsivo pelo styles.css */
 .roleta-wrapper {
     position: relative;
-    width: 400px;
-    height: 400px;
     margin: 0 auto;
-    perspective: 1000px; 
 }
 
-/* CORREÇÃO CHAVE: Garante centralização e z-index alto para a imagem central */
+/* Imagem Central da Roleta (Dragão) */
 .centro-roleta {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* O transform é crucial para centralizar de forma independente do tamanho do wrapper */
-    transform: translate(-50%, -50%); 
-    width: 80px; /* Tamanho fixo para o elemento central */
+    transform: translate(-50%, -50%);
+    width: 80px;
     height: 80px;
     border-radius: 50%;
     border: 3px solid #FFD700;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     z-index: 10; 
-    background-color: white;
-    padding: 5px;
-    overflow: hidden; 
+    /* CORREÇÃO CRÍTICA: Removido background-color e padding que causavam a "bola branca" */
+    background-color: transparent; 
+    padding: 0; 
+    overflow: hidden;
 }
 
-/* Opcional, se a imagem dentro do .centro-roleta estiver saindo */
 .centro-roleta img {
+    /* Garante que a imagem preencha o container */
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover; 
     border-radius: 50%;
 }
-
 
 #spinButton::before {
     content: '';
@@ -91,9 +88,8 @@
     box-shadow: none;
 }
 
-/* Remoção do emoji de roleta (ocultando a classe) */
-.spin-icon { 
-    display: none;
+.spin-icon {
+    display: none; 
 }
 
 @keyframes spin {
@@ -101,10 +97,9 @@
     to { transform: rotate(360deg); }
 }
 
-/* Estilo das opções de resposta */
+/* Estilo das opções de resposta (Corrigido para usar a cor cinza padrão) */
 #opcoes button {
-    /* Cor cinza por padrão, conforme solicitado */
-    background: linear-gradient(45deg, #b0b0b0, #9a9a9a); 
+    background: linear-gradient(45deg, #b0b0b0, #9a9a9a);
     color: white;
     border: none;
     padding: 12px 24px;
@@ -117,8 +112,6 @@
     text-align: left;
     position: relative;
     overflow: hidden;
-    /* Adicionando !important aqui para tentar sobrepor styles.css, se necessário */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important; 
 }
 
 #opcoes button:hover {
@@ -152,19 +145,3 @@
     }
 }
 
-/* --- CORREÇÃO DE RESPONSIVIDADE PARA MOBILE (Roleta em branco) --- */
-@media (max-width: 450px) {
-    /* O wrapper se ajusta à largura do viewport (95% da tela) */
-    .roleta-wrapper {
-        width: 95vw;
-        height: 95vw; /* Mantém a proporção quadrada 1:1 */
-        max-width: 400px; 
-        max-height: 400px;
-    }
-
-    /* O Canvas deve ocupar 100% do seu wrapper redimensionado */
-    #wheelCanvas {
-        width: 100%;
-        height: 100%;
-    }
-}

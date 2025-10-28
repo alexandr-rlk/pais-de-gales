@@ -3,6 +3,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* GARANTIA EXTRA: Impede que qualquer elemento individual cause transbordamento */
+    max-width: 100%; 
 }
 
 body {
@@ -10,6 +12,8 @@ body {
     background: #f4f4f9;
     color: #333;
     scroll-behavior: smooth;
+    /* CORREÇÃO CRÍTICA: Elimina a rolagem horizontal causada por elementos transbordantes */
+    overflow-x: hidden; 
 }
 
 /* CABEÇALHO */
@@ -34,6 +38,7 @@ header nav a {
     font-weight: bold;
     transition: all 0.3s ease;
     display: inline-block;
+    position: relative;
 }
 
 header nav a:hover {
@@ -62,7 +67,7 @@ header nav a:hover::after {
 .card {
     background: white;
     max-width: 900px;
-    margin: 50px auto;
+    margin: 50px auto; 
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -87,11 +92,13 @@ header nav a:hover::after {
     to {opacity: 1; transform: translateY(0);}
 }
 
-/* ROLETA */
+/* ROLETA (Desktop) */
 .roleta-wrapper {
     position: relative;
-    width: 400px;
-    margin: 20px auto;
+    width: 400px; /* Largura padrão para desktop */
+    height: 400px; 
+    margin: 20px auto; /* Centralização padrão */
+    perspective: 1000px; 
 }
 
 #wheelCanvas {
@@ -99,21 +106,15 @@ header nav a:hover::after {
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     display: block;
     transition: transform 0.5s ease-out;
+    max-width: 100%; 
+    height: auto;
 }
 
-.wheel-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 2;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+#wheelCanvas:hover {
+    transform: rotateX(5deg);
 }
 
+/* Flecha de Indicação */
 .arrow {
     position: absolute;
     top: -20px;
@@ -132,20 +133,19 @@ header nav a:hover::after {
         transform: translateX(-50%) translateY(-5px);
     }
 }
-    font-size: 30px;
-    z-index: 3;
-}
 
 /* Estilos da Equipe */
 .team-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
     gap: 20px;
     padding: 20px;
 }
 
 .team-member {
     text-align: center;
+    flex: 0 0 150px; 
 }
 
 .team-member img {
@@ -154,99 +154,11 @@ header nav a:hover::after {
     border-radius: 50%;
     margin-bottom: 10px;
     transition: transform 0.3s;
+    border: 3px solid white; 
 }
 
 .team-member img:hover {
     transform: scale(1.1);
-}
-
-/* Responsividade */
-@media screen and (max-width: 768px) {
-    header {
-        padding: 30px 10px;
-    }
-
-    header h1 {
-        font-size: 32px;
-    }
-
-    header nav {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .card {
-        margin: 30px 15px;
-        padding: 25px 20px;
-    }
-
-    .roleta-wrapper {
-        width: 300px;
-    }
-
-    #wheelCanvas {
-        width: 300px;
-        height: 300px;
-    }
-
-    .team-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 10px;
-    }
-
-    .team-member img {
-        width: 120px;
-        height: 120px;
-    }
-}
-}
-
-/* Responsividade */
-@media screen and (max-width: 768px) {
-    header {
-        padding: 30px 10px;
-    }
-
-    header h1 {
-        font-size: 32px;
-    }
-
-    header nav {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .card {
-        margin: 30px 15px;
-        padding: 25px 20px;
-    }
-
-    .roleta-wrapper {
-        width: 300px;
-    }
-
-    #wheelCanvas {
-        width: 300px;
-        height: 300px;
-    }
-
-    .team-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 10px;
-    }
-
-    .team-member img {
-        width: 120px;
-        height: 120px;
-    }
-}
-    font-size: 30px;
-    z-index: 3;
 }
 
 /* BOTÃO */
@@ -272,72 +184,52 @@ header nav a:hover::after {
 #pergunta-container {
     text-align: center;
     margin-top: 30px;
+    width: 100%; 
 }
 
 #pergunta-container.hidden {
     display: none;
 }
 
-    .pergunta-animation {
-        animation: slideIn 0.5s ease-out;
-    }
-    
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Efeito de confete */
-    @keyframes confetti {
-        0% { transform: translateY(0) rotateZ(0); opacity: 1; }
-        100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; }
-    }
-
-    .confetti {
-        position: fixed;
-        width: 10px;
-        height: 10px;
-        background: #ffd700;
-        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        animation: confetti 2s ease-out forwards;
-    }
-
-    /* Efeito de brilho ao acertar */
-    @keyframes correct-glow {
-        0% { box-shadow: 0 0 5px #00b37e; }
-        50% { box-shadow: 0 0 20px #00b37e; }
-        100% { box-shadow: 0 0 5px #00b37e; }
-    }
-
-    .correct-answer {
-        animation: correct-glow 1s ease-in-out infinite;
-    }#opcoes button {
-    width: 100%;
-    margin: 8px 0;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
+.pergunta-animation {
+    animation: slideIn 0.5s ease-out;
 }
 
-#opcoes button:hover {
-    background: #00b37e;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-#feedback {
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    animation: fadeIn 0.5s ease-out;
+/* Efeitos de confete e brilho */
+@keyframes confetti {
+    0% { transform: translateY(0) rotateZ(0); opacity: 1; }
+    100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #ffd700;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: confetti 2s ease-out forwards;
+    z-index: 9999;
+}
+
+@keyframes correct-glow {
+    0% { box-shadow: 0 0 5px #00b37e; }
+    50% { box-shadow: 0 0 20px #00b37e; }
+    100% { box-shadow: 0 0 5px #00b37e; }
+}
+
+.correct-answer {
+    animation: correct-glow 1s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
@@ -362,14 +254,6 @@ header nav a:hover::after {
 }
 
 /* Efeitos para a roleta */
-.roleta-wrapper {
-    position: relative;
-    width: 400px;
-    margin: 20px auto;
-    perspective: 1000px;
-}
-
-/* Efeitos de luz e brilho */
 .roleta-wrapper::before {
     content: '';
     position: absolute;
@@ -392,21 +276,24 @@ header nav a:hover::after {
     100% { transform: rotate(0); }
 }
 
-#wheelCanvas {
-    border-radius: 50%;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-#wheelCanvas:hover {
-    transform: rotateX(5deg);
-}
-
 /* Melhorias nos botões de opções */
 #opcoes button {
     position: relative;
     overflow: hidden;
+    width: 60%; 
+    padding: 10px;
+    background: #bbb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 8px 0;
+}
+
+#opcoes button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 #opcoes button::after {
@@ -439,22 +326,7 @@ header nav a:hover::after {
     align-items: center;
 }
 
-#opcoes button {
-    width: 60%;
-    padding: 10px;
-    background: #bbb;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#opcoes button:hover {
-    transform: scale(1.05);
-}
-
-/* EQUIPE */
+/* EQUIPE e RODAPÉ */
 #equipe {
     background: #007f5f;
     color: white;
@@ -462,26 +334,6 @@ header nav a:hover::after {
     text-align: center;
 }
 
-.team-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-}
-
-.team-member img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid white;
-    transition: 0.3s;
-}
-
-.team-member:hover img {
-    transform: scale(1.1);
-}
-
-/* RODAPÉ */
 footer {
     background: #2c3e50;
     color: white;
@@ -492,4 +344,60 @@ footer {
 .logo-footer {
     width: 160px;
     margin-bottom: 20px;
+}
+
+/* === CORREÇÃO CRÍTICA FINAL: RESPONSIVIDADE PARA CELULAR (MAX-WIDTH: 768PX) === */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 30px 10px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    header nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    header nav a {
+        margin: 0 5px;
+    }
+
+    .card {
+        margin: 30px 15px;
+        padding: 25px 20px;
+    }
+    
+    /* CORREÇÃO AGRESSIVA E DEFINITIVA: Força o aspecto quadrado e centraliza */
+    .roleta-wrapper {
+        width: 90vw !important; 
+        height: 90vw !important; /* FORÇA a altura igual à largura para ser um CÍRCULO */
+        margin: 20px auto !important; /* FORÇA a centralização e desfaz qualquer outra margem */
+    }
+
+    /* O Canvas deve ocupar todo o wrapper */
+    #wheelCanvas {
+        width: 100% !important; 
+        height: 100% !important;
+    }
+    
+    #opcoes button {
+        width: 90%; 
+    }
+
+    .team-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .team-member img {
+        width: 100px;
+        height: 100px;
+    }
 }

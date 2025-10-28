@@ -28,26 +28,19 @@ window.onload = function() {
     const numSetores = perguntas.length;
     const anguloPorSetor = (2 * Math.PI) / numSetores;
     const cores = [
-        "#FF0000", // Vermelho
-        "#FF6B00", // Laranja
-        "#FFD700", // Dourado
-        "#32CD32", // Verde Lima
-        "#1E90FF", // Azul Dodger
-        "#8A2BE2", // Azul Violeta
-        "#FF69B4", // Rosa Quente
-        "#00CED1", // Turquesa Escuro
-        "#9370DB", // Roxo Médio
-        "#20B2AA"  // Verde Mar Claro
+        "#FF0000", "#FF6B00", "#FFD700", "#32CD32", "#1E90FF",
+        "#8A2BE2", "#FF69B4", "#00CED1", "#9370DB", "#20B2AA"
     ];
     let podeGirar = true;
 
     function desenharRoleta() {
         if (!ctx) return; 
-        
-        // CORREÇÃO: Variáveis dinâmicas para o centro e o raio (crucial para a responsividade)
+
+        // CRÍTICO: Usa as dimensões INTERNAS ATUAIS do Canvas.
+        // A função ajustarTamanhoCanvas garante que estas são iguais.
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
-        const radius = Math.min(centerX, centerY); 
+        const radius = centerX; 
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -60,11 +53,11 @@ window.onload = function() {
         for(let i = 0; i < numSetores; i++) {
             // Desenhar setor
             ctx.beginPath();
-            ctx.moveTo(centerX, centerY); 
-            ctx.arc(centerX, centerY, radius, anguloPorSetor * i, anguloPorSetor * (i + 1)); 
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, anguloPorSetor * i, anguloPorSetor * (i + 1));
             
             // Criar gradiente para cada setor
-            const gradient = ctx.createRadialGradient(centerX, centerY, radius * 0.125, centerX, centerY, radius); 
+            const gradient = ctx.createRadialGradient(centerX, centerY, radius * 0.25, centerX, centerY, radius);
             const corBase = cores[i];
             const corClara = clarearCor(corBase, 30);
             const corEscura = escurecerCor(corBase, 20);
@@ -83,9 +76,8 @@ window.onload = function() {
 
             // Adicionar texto com sombra
             ctx.save();
-            ctx.translate(centerX, centerY); 
+            ctx.translate(centerX, centerY);
             ctx.rotate(anguloPorSetor * i + anguloPorSetor / 2);
-            ctx.textAlign = "right";
             
             // Posição e tamanho do texto proporcional ao raio
             const textRadius = radius * 0.75; 
@@ -93,44 +85,43 @@ window.onload = function() {
             const fontSizeSmall = radius * 0.04; 
             const textOffset = radius * 0.075; 
             
-            // Sombra do texto
-            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-            ctx.shadowBlur = 4;
-            ctx.shadowOffsetX = 2;
-            ctx.shadowOffsetY = 2;
-            
-            // Configurar texto
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            
-            // Adicionar sombra e contorno para melhor legibilidade
+            // Sombra do texto e contorno
             ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
             ctx.shadowBlur = 4;
             ctx.shadowOffsetX = 2;
             ctx.shadowOffsetY = 2;
             ctx.lineWidth = 4;
             ctx.strokeStyle = "black";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
             
             // Desenhar o número com contorno
-            ctx.font = `bold ${fontSizeBig}px Roboto Slab`; 
-            ctx.strokeText(i + 1, textRadius, 0); 
+            ctx.font = `bold ${fontSizeBig}px Roboto Slab`;
+            ctx.strokeText(i + 1, textRadius, 0);
             ctx.fillStyle = "white";
-            ctx.fillText(i + 1, textRadius, 0); 
+            ctx.fillText(i + 1, textRadius, 0);
             
             // Desenhar a palavra "Pergunta" com contorno
-            ctx.font = `bold ${fontSizeSmall}px Roboto Slab`; 
-            ctx.strokeText("Pergunta", textRadius, -textOffset); 
-            ctx.fillText("Pergunta", textRadius, -textOffset); 
+            ctx.font = `bold ${fontSizeSmall}px Roboto Slab`;
+            ctx.strokeText("Pergunta", textRadius, -textOffset);
+            ctx.fillText("Pergunta", textRadius, -textOffset);
             ctx.restore();
         }
 
-        // Adicionar borda decorativa (no Canvas, mas o elemento HTML com a imagem é posicionado por CSS)
+        // Adicionar imagem central
         const centroImg = document.getElementById('centro-roleta');
+        const centroSize = radius * 0.20; // Tamanho central proporcional
         if (centroImg) {
-            const centroSize = 80; // Tamanho do elemento HTML (deve estar sincronizado com o CSS)
-            
+            ctx.save();
             ctx.beginPath();
-            ctx.arc(centerX, centerY, centroSize/2, 0, Math.PI * 2); 
+            ctx.arc(centerX, centerY, centroSize/2, 0, Math.PI * 2);
+            ctx.clip();
+            ctx.drawImage(centroImg, centerX - centroSize/2, centerY - centroSize/2, centroSize, centroSize);
+            ctx.restore();
+            
+            // Adicionar borda decorativa
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, centroSize/2, 0, Math.PI * 2);
             ctx.strokeStyle = '#FFD700';
             ctx.lineWidth = 3;
             ctx.stroke();
@@ -179,25 +170,23 @@ window.onload = function() {
         const duracao = 4000;
         const inicio = performance.now();
         
-        // Define o centro dinâmico para a animação
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
 
         function animarGiro(tempoAtual){
             const progresso = Math.min((tempoAtual-inicio)/duracao,1);
-            // Função de easing para movimento mais natural
             const easing = 1 - Math.pow(1 - progresso, 4);
             anguloAtual = (giroTotal * easing) % 360;
             
             ctx.clearRect(0,0,canvas.width,canvas.height);
             ctx.save();
-            ctx.translate(centerX, centerY); 
+            // Usa as variáveis dinâmicas centerX e centerY para a rotação
+            ctx.translate(centerX, centerY);
             ctx.rotate((anguloAtual*Math.PI)/180);
-            ctx.translate(-centerX, -centerY); 
+            ctx.translate(-centerX, -centerY);
             desenharRoleta();
             ctx.restore();
 
-            // Adiciona efeito de vibração sutil no início
             if(progresso < 0.2) {
                 canvas.style.transform = "translateX(" + (Math.sin(progresso * 50) * 2) + "px)";
             } else {
@@ -207,8 +196,7 @@ window.onload = function() {
             if(progresso<1) {
                 requestAnimationFrame(animarGiro);
             } else {
-                // Efeito de "bouncing" ao parar
-                canvas.style.animation = 'stopSpin 0.5s ease-out'; // stopSpin deve ser definido no CSS
+                canvas.style.animation = 'stopSpin 0.5s ease-out';
                 setTimeout(() => {
                     canvas.style.animation = '';
                     mostrarPergunta();
@@ -219,7 +207,6 @@ window.onload = function() {
     }
 
     function mostrarPergunta(){
-        // Calcula o setor que está na posição do ponteiro
         const rotacaoTotal = (anguloAtual % 360);
         const anguloNormalizado = (360 - rotacaoTotal) % 360; 
         const anguloSetor = 360 / numSetores;
@@ -227,14 +214,12 @@ window.onload = function() {
         
         const perguntaEscolhida = perguntas[indice % numSetores]; 
 
-        // Prepara o container de pergunta
         setTimeout(() => {
             perguntaContainer.classList.remove("hidden");
             perguntaEl.textContent = perguntaEscolhida.pergunta;
             opcoesEl.innerHTML = "";
             feedbackEl.textContent = "";
             
-            // Adiciona efeito de typing na pergunta
             perguntaEl.style.opacity = "0";
             perguntaEl.style.width = "0"; 
             perguntaEl.style.overflow = "hidden"; 
@@ -243,27 +228,24 @@ window.onload = function() {
                 perguntaEl.style.opacity = "1";
                 perguntaEl.style.animation = "typing 1s steps(40, end) forwards";
                 
-                // Adiciona as opções com delay para efeito de cascata
                 perguntaEscolhida.opcoes.forEach((op, i) => {
                     setTimeout(() => {
                         const btn = document.createElement("button");
                         btn.textContent = op;
                         btn.style.opacity = "0";
                         btn.onclick = () => {
-                            // Desabilita todos os botões
                             Array.from(opcoesEl.children).forEach(b => b.disabled = true);
-                            spinButton.disabled = false; // Permite girar novamente
+                            spinButton.disabled = false; 
                             
                             if(i === perguntaEscolhida.correta) {
-                                // ACERTO: SÓ A CERTA FICA VERDE
-                                btn.style.background = "linear-gradient(45deg, #00b37e, #007f5f)"; // Verde
+                                btn.style.background = "linear-gradient(45deg, #00b37e, #007f5f)";
                                 btn.style.transform = "scale(1.05)";
+                                btn.classList.add('correct-answer');
                                 feedbackEl.textContent = "🎉 Você acertou! Peça a algum integrante seu prêmio!";
                                 feedbackEl.style.color = "#00b37e";
                                 feedbackEl.style.animation = "bounce 0.5s ease";
                                 podeGirar = false; 
                                 
-                                // Criar confetes (se o CSS tiver a classe .confetti)
                                 for(let i = 0; i < 50; i++) {
                                     const confetti = document.createElement('div');
                                     confetti.className = 'confetti';
@@ -276,13 +258,11 @@ window.onload = function() {
                                     setTimeout(() => confetti.remove(), 5000);
                                 }
                             } else {
-                                // ERRO: CLICADA FICA VERMELHA E CERTA FICA VERDE
-                                btn.style.background = "linear-gradient(45deg, #e74c3c, #c0392b)"; // Vermelho
+                                btn.style.background = "linear-gradient(45deg, #e74c3c, #c0392b)";
                                 btn.style.animation = "shake 0.5s ease";
                                 
-                                // Mostra a resposta correta (fica verde)
                                 const corretaBtn = opcoesEl.children[perguntaEscolhida.correta];
-                                corretaBtn.style.background = "linear-gradient(45deg, #00b37e, #007f5f)"; // Verde
+                                corretaBtn.style.background = "linear-gradient(45deg, #00b37e, #007f5f)";
                                 
                                 feedbackEl.textContent = "❌ Resposta incorreta! Tente novamente girando a roleta.";
                                 feedbackEl.style.color = "#e74c3c";
@@ -291,32 +271,34 @@ window.onload = function() {
                         };
                         opcoesEl.appendChild(btn);
                         
-                        // Fade in do botão
                         setTimeout(() => {
                             btn.style.opacity = "1";
                             btn.style.animation = "slideIn 0.5s ease forwards";
                         }, 50);
-                    }, i * 200); // Delay crescente para cada opção
+                    }, i * 200);
                 });
             }, 100);
         }, 500);
     }
 
-    // CORREÇÃO: LÓGICA DE RESPONSIVIDADE
+    // LÓGICA DE RESPONSIVIDADE DO CANVAS (CORREÇÃO FINAL)
     const roletaWrapper = document.querySelector(".roleta-wrapper");
     
     function ajustarTamanhoCanvas() {
-        // Redefine a resolução interna (em pixels) do Canvas para corresponder ao tamanho de exibição (CSS)
-        canvas.width = roletaWrapper.clientWidth;
-        canvas.height = roletaWrapper.clientHeight;
+        // Pega a largura do contêiner (ex: 90vw), que o CSS garante que é um quadrado
+        const size = roletaWrapper.clientWidth; 
+        
+        // CORREÇÃO CRÍTICA: Define a resolução interna do Canvas (width/height) para ser um quadrado perfeito.
+        // Isso remove o formato oval.
+        canvas.width = size;
+        canvas.height = size;
         desenharRoleta();
     }
 
-    // Chama o ajuste de tamanho inicial e redesenha a roleta
+    // Inicializa o Canvas com o tamanho correto e redesenha ao redimensionar
     ajustarTamanhoCanvas(); 
-
-    // Opcional: Redesenha se o tamanho da tela mudar (ex: girar o celular)
     window.addEventListener('resize', ajustarTamanhoCanvas);
-    
+
     spinButton.addEventListener("click", girarRoleta);
 };
+
