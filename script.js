@@ -43,6 +43,11 @@ window.onload = function() {
 
     function desenharRoleta() {
         if (!ctx) return; 
+        
+        // CORREÇÃO: Variáveis dinâmicas para o centro e o raio (crucial para a responsividade)
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = Math.min(centerX, centerY); 
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -55,11 +60,11 @@ window.onload = function() {
         for(let i = 0; i < numSetores; i++) {
             // Desenhar setor
             ctx.beginPath();
-            ctx.moveTo(200, 200);
-            ctx.arc(200, 200, 200, anguloPorSetor * i, anguloPorSetor * (i + 1));
+            ctx.moveTo(centerX, centerY); 
+            ctx.arc(centerX, centerY, radius, anguloPorSetor * i, anguloPorSetor * (i + 1)); 
             
             // Criar gradiente para cada setor
-            const gradient = ctx.createRadialGradient(200, 200, 50, 200, 200, 200);
+            const gradient = ctx.createRadialGradient(centerX, centerY, radius * 0.125, centerX, centerY, radius); 
             const corBase = cores[i];
             const corClara = clarearCor(corBase, 30);
             const corEscura = escurecerCor(corBase, 20);
@@ -78,10 +83,15 @@ window.onload = function() {
 
             // Adicionar texto com sombra
             ctx.save();
-            ctx.translate(200, 200);
+            ctx.translate(centerX, centerY); 
             ctx.rotate(anguloPorSetor * i + anguloPorSetor / 2);
             ctx.textAlign = "right";
-            ctx.font = "bold 18px Roboto Slab";
+            
+            // Posição e tamanho do texto proporcional ao raio
+            const textRadius = radius * 0.75; 
+            const fontSizeBig = radius * 0.12; 
+            const fontSizeSmall = radius * 0.04; 
+            const textOffset = radius * 0.075; 
             
             // Sombra do texto
             ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
@@ -102,32 +112,25 @@ window.onload = function() {
             ctx.strokeStyle = "black";
             
             // Desenhar o número com contorno
-            ctx.font = "bold 48px Roboto Slab";
-            ctx.strokeText(i + 1, 150, 0);
+            ctx.font = `bold ${fontSizeBig}px Roboto Slab`; 
+            ctx.strokeText(i + 1, textRadius, 0); 
             ctx.fillStyle = "white";
-            ctx.fillText(i + 1, 150, 0);
+            ctx.fillText(i + 1, textRadius, 0); 
             
             // Desenhar a palavra "Pergunta" com contorno
-            ctx.font = "bold 16px Roboto Slab";
-            ctx.strokeText("Pergunta", 150, -30);
-            ctx.fillText("Pergunta", 150, -30);
+            ctx.font = `bold ${fontSizeSmall}px Roboto Slab`; 
+            ctx.strokeText("Pergunta", textRadius, -textOffset); 
+            ctx.fillText("Pergunta", textRadius, -textOffset); 
             ctx.restore();
         }
 
-        // Adicionar imagem central
+        // Adicionar borda decorativa (no Canvas, mas o elemento HTML com a imagem é posicionado por CSS)
         const centroImg = document.getElementById('centro-roleta');
         if (centroImg) {
-            const centroSize = 80; // Tamanho da imagem central
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(200, 200, centroSize/2, 0, Math.PI * 2);
-            ctx.clip();
-            ctx.drawImage(centroImg, 200 - centroSize/2, 200 - centroSize/2, centroSize, centroSize);
-            ctx.restore();
+            const centroSize = 80; // Tamanho do elemento HTML (deve estar sincronizado com o CSS)
             
-            // Adicionar borda decorativa
             ctx.beginPath();
-            ctx.arc(200, 200, centroSize/2, 0, Math.PI * 2);
+            ctx.arc(centerX, centerY, centroSize/2, 0, Math.PI * 2); 
             ctx.strokeStyle = '#FFD700';
             ctx.lineWidth = 3;
             ctx.stroke();
@@ -176,10 +179,9 @@ window.onload = function() {
         const duracao = 4000;
         const inicio = performance.now();
         
-        // Som de giro (opcional)
-        // OBS: O áudio está como um data URI vazio. Substitua pelo seu arquivo de som, se tiver.
-        const somGiro = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//NFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-        // somGiro.play(); 
+        // Define o centro dinâmico para a animação
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
 
         function animarGiro(tempoAtual){
             const progresso = Math.min((tempoAtual-inicio)/duracao,1);
@@ -189,9 +191,9 @@ window.onload = function() {
             
             ctx.clearRect(0,0,canvas.width,canvas.height);
             ctx.save();
-            ctx.translate(200,200);
+            ctx.translate(centerX, centerY); 
             ctx.rotate((anguloAtual*Math.PI)/180);
-            ctx.translate(-200,-200);
+            ctx.translate(-centerX, -centerY); 
             desenharRoleta();
             ctx.restore();
 
@@ -206,7 +208,7 @@ window.onload = function() {
                 requestAnimationFrame(animarGiro);
             } else {
                 // Efeito de "bouncing" ao parar
-                canvas.style.animation = 'stopSpin 0.5s ease-out'; // Uso do stopSpin (do styles.css)
+                canvas.style.animation = 'stopSpin 0.5s ease-out'; // stopSpin deve ser definido no CSS
                 setTimeout(() => {
                     canvas.style.animation = '';
                     mostrarPergunta();
@@ -218,14 +220,11 @@ window.onload = function() {
 
     function mostrarPergunta(){
         // Calcula o setor que está na posição do ponteiro
-        // A flecha (seta) está no topo (ângulo 0).
-        // Convertemos anguloAtual para um valor entre 0 e 360, e ajustamos a rotação para o índice correto.
         const rotacaoTotal = (anguloAtual % 360);
         const anguloNormalizado = (360 - rotacaoTotal) % 360; 
         const anguloSetor = 360 / numSetores;
         const indice = Math.floor(anguloNormalizado / anguloSetor);
         
-        // Garante que o índice não exceda o tamanho do array
         const perguntaEscolhida = perguntas[indice % numSetores]; 
 
         // Prepara o container de pergunta
@@ -237,8 +236,8 @@ window.onload = function() {
             
             // Adiciona efeito de typing na pergunta
             perguntaEl.style.opacity = "0";
-            perguntaEl.style.width = "0"; // Reset para a animação
-            perguntaEl.style.overflow = "hidden"; // Necessário para o efeito 'typing'
+            perguntaEl.style.width = "0"; 
+            perguntaEl.style.overflow = "hidden"; 
             
             setTimeout(() => {
                 perguntaEl.style.opacity = "1";
@@ -256,21 +255,20 @@ window.onload = function() {
                             spinButton.disabled = false; // Permite girar novamente
                             
                             if(i === perguntaEscolhida.correta) {
-                                // Efeito de resposta correta
-                                btn.style.background = "#00b37e";
+                                // ACERTO: SÓ A CERTA FICA VERDE
+                                btn.style.background = "linear-gradient(45deg, #00b37e, #007f5f)"; // Verde
                                 btn.style.transform = "scale(1.05)";
-                                btn.classList.add('correct-answer');
                                 feedbackEl.textContent = "🎉 Você acertou! Peça a algum integrante seu prêmio!";
                                 feedbackEl.style.color = "#00b37e";
                                 feedbackEl.style.animation = "bounce 0.5s ease";
-                                podeGirar = false; // Desativa o giro após acertar (ganhou o prêmio)
+                                podeGirar = false; 
                                 
-                                // Criar confetes
+                                // Criar confetes (se o CSS tiver a classe .confetti)
                                 for(let i = 0; i < 50; i++) {
                                     const confetti = document.createElement('div');
                                     confetti.className = 'confetti';
                                     confetti.style.left = Math.random() * 100 + 'vw';
-                                    confetti.style.top = Math.random() * -20 + 'vh'; // Começa fora da tela
+                                    confetti.style.top = Math.random() * -20 + 'vh'; 
                                     confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
                                     confetti.style.animationDelay = (Math.random() * 0.5) + 's';
                                     confetti.style.backgroundColor = ['#FFD700', '#00b37e', '#FF69B4', '#87CEEB'][Math.floor(Math.random() * 4)];
@@ -278,13 +276,13 @@ window.onload = function() {
                                     setTimeout(() => confetti.remove(), 5000);
                                 }
                             } else {
-                                // Efeito de resposta incorreta
-                                btn.style.background = "#e74c3c";
+                                // ERRO: CLICADA FICA VERMELHA E CERTA FICA VERDE
+                                btn.style.background = "linear-gradient(45deg, #e74c3c, #c0392b)"; // Vermelho
                                 btn.style.animation = "shake 0.5s ease";
                                 
-                                // Mostra a resposta correta
+                                // Mostra a resposta correta (fica verde)
                                 const corretaBtn = opcoesEl.children[perguntaEscolhida.correta];
-                                corretaBtn.style.background = "#00b37e";
+                                corretaBtn.style.background = "linear-gradient(45deg, #00b37e, #007f5f)"; // Verde
                                 
                                 feedbackEl.textContent = "❌ Resposta incorreta! Tente novamente girando a roleta.";
                                 feedbackEl.style.color = "#e74c3c";
@@ -304,9 +302,21 @@ window.onload = function() {
         }, 500);
     }
 
-    // A roleta deve ser desenhada ao carregar a página
-    desenharRoleta();
+    // CORREÇÃO: LÓGICA DE RESPONSIVIDADE
+    const roletaWrapper = document.querySelector(".roleta-wrapper");
     
-    // O evento de clique deve ser adicionado após o botão ser inicializado
+    function ajustarTamanhoCanvas() {
+        // Redefine a resolução interna (em pixels) do Canvas para corresponder ao tamanho de exibição (CSS)
+        canvas.width = roletaWrapper.clientWidth;
+        canvas.height = roletaWrapper.clientHeight;
+        desenharRoleta();
+    }
+
+    // Chama o ajuste de tamanho inicial e redesenha a roleta
+    ajustarTamanhoCanvas(); 
+
+    // Opcional: Redesenha se o tamanho da tela mudar (ex: girar o celular)
+    window.addEventListener('resize', ajustarTamanhoCanvas);
+    
     spinButton.addEventListener("click", girarRoleta);
 };
