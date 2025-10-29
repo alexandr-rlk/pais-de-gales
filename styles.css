@@ -3,8 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* GARANTIA EXTRA: Impede que qualquer elemento individual cause transbordamento */
-    max-width: 100%; 
+    max-width: 100%;
 }
 
 body {
@@ -12,392 +11,280 @@ body {
     background: #f4f4f9;
     color: #333;
     scroll-behavior: smooth;
-    /* CORREÇÃO CRÍTICA: Elimina a rolagem horizontal causada por elementos transbordantes */
-    overflow-x: hidden; 
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* CABEÇALHO */
-header {
-    background: #007f5f;
-    color: white;
-    padding: 50px 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+/* === VARIÁVEIS DE COR (Baseadas na REFERENCIA.jpg) === */
+:root {
+  --red-header: #a9322a;
+  --cream-bg: #f5eadf;
+  --cream-footer-bg: #ede7d8;
+  --green-dark: #2f5b3f;
+  --green-dark-2: #254b36;   /* Hover do botão */
+  --text-dark: #2c2c2c;
+  --muted: #7a6f61;
+  --cream-light: #f7efe6;
+  --text-header-nav: #dcdcdc;
+  --text-header-nav-hover: #ffffff;
+  --icon-red: var(--red-header); /* Cor para ícone nota */
+  --icon-green: var(--green-dark); /* Cor para ícones montanha/livro */
 }
 
-header h1 {
-    font-size: 42px;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-    margin-bottom: 15px;
+
+/* === ESTILOS DA SPLASH SCREEN (RÉPLICA EXATA DA REFERENCIA.jpg - CORREÇÃO FINALÍSSIMA) === */
+#splash-screen {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    display: flex; flex-direction: column; z-index: 1000;
+    background-color: var(--cream-bg); color: var(--text-dark);
+    font-family: 'Lato', Arial, sans-serif;
 }
 
-header nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    display: inline-block;
-    position: relative;
-}
-
-header nav a:hover {
-    transform: scale(1.1);
-    color: #ffd700;
-    text-shadow: 0 0 5px rgba(255,215,0,0.5);
-}
-
-header nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 50%;
-    background-color: #ffd700;
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-header nav a:hover::after {
-    width: 100%;
-}
-
-/* CARDS */
-.card {
-    background: white;
-    max-width: 900px;
-    margin: 50px auto; 
-    padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    animation: fadeInUp 0.8s forwards;
-}
-
-.card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-.card h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
-    color: #007f5f;
-}
-
-/* ANIMAÇÃO */
-@keyframes fadeInUp {
-    from {opacity: 0; transform: translateY(30px);}
-    to {opacity: 1; transform: translateY(0);}
-}
-
-/* ROLETA (Desktop) */
-.roleta-wrapper {
-    position: relative;
-    width: 400px; /* Largura padrão para desktop */
-    height: 400px; 
-    margin: 20px auto; /* Centralização padrão */
-    perspective: 1000px; 
-}
-
-#wheelCanvas {
-    border-radius: 50%;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    display: block;
-    transition: transform 0.5s ease-out;
-    max-width: 100%; 
-    height: auto;
-}
-
-#wheelCanvas:hover {
-    transform: rotateX(5deg);
-}
-
-/* Flecha de Indicação */
-.arrow {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 30px;
-    z-index: 3;
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    50% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-}
-
-/* Estilos da Equipe */
-.team-container {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.team-member {
-    text-align: center;
-    flex: 0 0 150px; 
-}
-
-.team-member img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
-    border: 3px solid white; 
-}
-
-.team-member img:hover {
-    transform: scale(1.1);
-}
-
-/* BOTÃO */
-#spinButton {
-    display: block;
-    margin: 20px auto;
-    background: #007f5f;
-    color: white;
-    font-weight: bold;
-    padding: 12px 40px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#spinButton:hover {
-    background: #00b37e;
-    transform: scale(1.05);
-}
-
-/* PERGUNTAS */
-#pergunta-container {
-    text-align: center;
-    margin-top: 30px;
-    width: 100%; 
-}
-
-#pergunta-container.hidden {
-    display: none;
-}
-
-.pergunta-animation {
-    animation: slideIn 0.5s ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Efeitos de confete e brilho */
-@keyframes confetti {
-    0% { transform: translateY(0) rotateZ(0); opacity: 1; }
-    100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; }
-}
-
-.confetti {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background: #ffd700;
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    animation: confetti 2s ease-out forwards;
-    z-index: 9999;
-}
-
-@keyframes correct-glow {
-    0% { box-shadow: 0 0 5px #00b37e; }
-    50% { box-shadow: 0 0 20px #00b37e; }
-    100% { box-shadow: 0 0 5px #00b37e; }
-}
-
-.correct-answer {
-    animation: correct-glow 1s ease-in-out infinite;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes bounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-/* Efeitos para a roleta */
-.roleta-wrapper::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 2;
-    animation: shine 2s infinite;
-}
-
-@keyframes shine {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.5; }
-}
-
-@keyframes stopSpin {
-    0% { transform: rotate(5deg); }
-    50% { transform: rotate(-3deg); }
-    100% { transform: rotate(0); }
-}
-
-/* Melhorias nos botões de opções */
-#opcoes button {
-    position: relative;
-    overflow: hidden;
-    width: 60%; 
-    padding: 10px;
-    background: #bbb;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin: 8px 0;
-}
-
-#opcoes button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-#opcoes button::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-#opcoes button:hover::after {
-    width: 200%;
-    height: 200%;
-}
-
-#pergunta {
-    font-size: 22px;
-    margin-bottom: 20px;
-}
-
-#opcoes {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+/* Cabeçalho da Splash */
+.splash-header {
+    background-color: var(--red-header); color: var(--cream-light);
+    padding: 20px 5%; /* Padding vertical e horizontal */ width: 100%;
+    position: relative; overflow: hidden;
+    display: flex; /* Para alinhar logo, centro e placeholder */
     align-items: center;
+    justify-content: space-between; /* Espaça logo, centro, placeholder */
+    min-height: 100px; /* Altura mínima para garantir espaço visual */
+    /* Adiciona o dragão ténue como fundo */
+    background-image: url('assets/dragão.png'); background-repeat: no-repeat;
+    background-position: 5% 50%; background-size: auto 60%;
+}
+/* Camada escura sobre o fundo */
+.splash-header::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(60, 0, 0, 0.75); z-index: 1;
 }
 
-/* EQUIPE e RODAPÉ */
-#equipe {
-    background: #007f5f;
-    color: white;
-    padding: 60px 20px;
+/* Logo Mark (pequeno dragão) */
+.splash-logo-mark {
+    position: relative; /* Mantém no fluxo do flex */
+    z-index: 2;
+    height: 35px; width: auto; flex-shrink: 0;
+    opacity: 0.9;
+    /* filter: brightness(0) invert(1); */
+}
+
+/* Bloco central com Títulos e Nav */
+.splash-header-center {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
     text-align: center;
+    flex-grow: 1; /* Ocupa o espaço central */
+    padding: 0 20px; /* Evita que encoste no logo/placeholder */
 }
 
-footer {
-    background: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
+.splash-header-titles {
+    margin-bottom: 15px; /* Espaço entre títulos e nav */
 }
 
-.logo-footer {
-    width: 160px;
-    margin-bottom: 20px;
+.splash-header-titles h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(2em, 5vw, 2.8em); /* Ajustado */
+    font-weight: 700; color: var(--cream-light); margin-bottom: 2px;
+    letter-spacing: 1px; line-height: 1.1; text-transform: uppercase;
 }
 
-/* === CORREÇÃO CRÍTICA FINAL: RESPONSIVIDADE PARA CELULAR (MAX-WIDTH: 768PX) === */
+.splash-header-titles p {
+    font-size: clamp(0.75em, 2vw, 0.9em); font-weight: bold; color: var(--text-header-nav);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-top: 5px;
+}
+
+.splash-nav { display: flex; flex-wrap: wrap; gap: 8px 30px; /* Ajustado */ justify-content: center; }
+
+.splash-nav a {
+    color: var(--text-header-nav); text-decoration: none; font-size: 14px; /* Ajustado */
+    font-weight: bold; letter-spacing: 0.8px; transition: color 0.3s ease;
+    padding-bottom: 3px; position: relative;
+    /* font-variant: small-caps; */
+    text-transform: uppercase; white-space: nowrap;
+}
+.splash-nav a:hover { color: var(--text-header-nav-hover); }
+/* Linha inferior no hover */
+.splash-nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background-color: #fff; transition: width 0.3s ease; }
+.splash-nav a:hover::after { width: 100%; }
+
+/* Placeholder div para equilibrar o espaço do logo à esquerda (invisível) */
+.splash-header-placeholder {
+    width: 35px; /* Mesmo tamanho/espaço do logo mark */
+    flex-shrink: 0;
+    visibility: hidden;
+}
+
+
+/* Conteúdo Principal da Splash (Layout de 2 Colunas) */
+.splash-main {
+    flex-grow: 1; display: flex; justify-content: center; align-items: center;
+    padding: 50px 8%; /* Padding vertical aumentado */ gap: 70px; /* Espaço aumentado */
+}
+
+.splash-main-left {
+    flex-basis: 40%; max-width: 380px; display: flex; flex-direction: column; align-items: center;
+}
+
+.splash-dragon { width: 100%; max-width: 300px; height: auto; margin-bottom: 35px; }
+
+.cta#comecar-btn { /* Link como botão */
+    display: inline-block; background: var(--green-dark); color: #fff;
+    padding: 14px 34px; border-radius: 8px; font-size: 16px; font-weight: bold;
+    text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.cta#comecar-btn:hover { background: var(--green-dark-2); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+.cta#comecar-btn:focus { outline: 3px solid rgba(47,91,63,0.3); outline-offset: 2px; }
+
+.splash-main-right {
+    flex-basis: 55%; text-align: left;
+    /* Alinhamento vertical relativo ao dragão */
+    padding-bottom: 30px; /* Empurra o texto um pouco para cima */
+}
+
+.splash-main-right h2 { /* Título na direita */
+    font-family: 'Playfair Display', serif; font-size: clamp(3em, 7vw, 4.8em);
+    font-weight: 900; color: var(--green-dark); margin-bottom: 8px; line-height: 0.98;
+    text-transform: uppercase;
+}
+
+.splash-subtitle-main { /* Subtítulo na direita */
+    font-size: clamp(1em, 2.2vw, 1.25em); font-weight: bold; color: var(--green-dark);
+    letter-spacing: 1px; margin-bottom: 28px; text-transform: uppercase;
+}
+
+.splash-description { /* Descrição na direita */
+    font-family: 'Lato', sans-serif; font-size: clamp(0.95em, 1.9vw, 1.1em);
+    color: var(--muted); line-height: 1.7; margin-bottom: 0;
+}
+
+/* Rodapé da Splash (Features Section) */
+.splash-footer {
+    display: flex; justify-content: space-around; align-items: flex-start;
+    padding: 45px 8%; background-color: var(--cream-footer-bg); width: 100%;
+    font-size: 0.88em; text-align: center; color: var(--text-secondary);
+    border-top: 1px solid #dcd5c5;
+}
+
+.footer-section { max-width: 30%; display: flex; flex-direction: column; align-items: center; }
+
+.footer-icon {
+    width: 55px; height: 55px; margin-bottom: 20px; object-fit: contain;
+}
+/* Cores específicas dos ícones */
+.footer-section:nth-child(2) .footer-icon { /* Nota musical vermelha */
+   filter: invert(21%) sepia(21%) saturate(2768%) hue-rotate(340deg) brightness(88%) contrast(91%);
+}
+
+
+.footer-section h3 {
+     margin-bottom: 12px; color: var(--green-dark); font-size: 1.05em; font-weight: bold;
+     letter-spacing: 0.5px; text-transform: uppercase;
+}
+.footer-section p {
+    font-family: 'Lato', sans-serif; line-height: 1.6; font-size: 0.98em; color: var(--muted);
+}
+/* === FIM DOS ESTILOS DA SPLASH SCREEN === */
+
+
+/* --- Estilos do Conteúdo Principal do Site (Mantidos) --- */
+/* (O código CSS para header, .card, .roleta-wrapper, etc., continua aqui, inalterado) */
+header { background: #007f5f; color: white; padding: 50px 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+header h1 { font-size: 42px; text-shadow: 1px 1px 5px rgba(0,0,0,0.3); margin-bottom: 15px; }
+header nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; transition: all 0.3s ease; display: inline-block; position: relative; }
+header nav a:hover { transform: scale(1.1); color: #ffd700; text-shadow: 0 0 5px rgba(255,215,0,0.5); }
+header nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; background-color: #ffd700; transition: all 0.3s ease; transform: translateX(-50%); }
+header nav a:hover::after { width: 100%; }
+.card { background: white; max-width: 900px; margin: 50px auto; padding: 40px 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; animation: fadeInUp 0.8s forwards; }
+.card:hover { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+.card h2 { font-size: 28px; margin-bottom: 15px; color: #007f5f; }
+@keyframes fadeInUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
+.roleta-wrapper { position: relative; width: 400px; height: 400px; margin: 20px auto; perspective: 1000px; }
+#wheelCanvas { border-radius: 50%; box-shadow: 0 5px 20px rgba(0,0,0,0.3); display: block; transition: transform 0.5s ease-out; max-width: 100%; height: auto; }
+.arrow { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 30px; z-index: 3; animation: bounceArrow 1s infinite; }
+@keyframes bounceArrow { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+.roleta-wrapper::before { content: ''; position: absolute; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%); pointer-events: none; z-index: 2; animation: shine 2s infinite; }
+@keyframes shine { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.5; } }
+@keyframes stopSpin { 0% { transform: rotate(5deg); } 50% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
+#wheelCanvas:hover { transform: rotateX(5deg); }
+#pergunta-container { text-align: center; margin-top: 30px; }
+#pergunta-container.hidden { display: none; }
+#pergunta { font-size: 22px; margin-bottom: 20px; }
+#opcoes { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+#opcoes button { position: relative; overflow: hidden; width: 60%; padding: 10px; color: white; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+#opcoes button:hover { transform: scale(1.05); }
+@keyframes slideIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes confetti { 0% { transform: translateY(0) rotateZ(0); opacity: 1; } 100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; } }
+.confetti { position: fixed; width: 10px; height: 10px; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); animation: confetti 2s ease-out forwards; z-index: 9999; }
+@keyframes correct-glow { 0% { box-shadow: 0 0 5px #00b37e; } 50% { box-shadow: 0 0 20px #00b37e; } 100% { box-shadow: 0 0 5px #00b37e; } }
+.correct-answer { animation: correct-glow 1s ease-in-out infinite; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+#equipe { background: #007f5f; color: white; padding: 60px 20px; text-align: center; }
+.team-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+.team-member img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid white; transition: 0.3s; }
+.team-member:hover img { transform: scale(1.1); }
+footer { background: #2c3e50; color: white; text-align: center; padding: 40px 20px; }
+
+
+/* === RESPONSIVIDADE (MOBILE - Ajustes Finais Detalhados) === */
 @media screen and (max-width: 768px) {
-    header {
-        padding: 30px 10px;
-    }
+    /* Ajustes gerais */
+    header { padding: 30px 10px; }
+    header h1 { font-size: 32px; }
+    header nav { display: flex; flex-direction: column; gap: 10px; } /* Menu original empilhado */
+    .card { margin: 30px 15px; padding: 25px 20px; }
 
-    header h1 {
-        font-size: 32px;
-    }
+    /* Roleta quadrada e centralizada */
+    .roleta-wrapper { width: 90vw !important; height: 90vw !important; margin: 20px auto !important; }
+    #wheelCanvas { width: 100% !important; height: 100% !important; }
 
-    header nav {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap; 
-        justify-content: center;
-        gap: 5px;
-    }
-    
-    header nav a {
-        margin: 0 5px;
-    }
+    /* Ajustes da equipe */
+    .team-member img { width: 80px; height: 80px; }
+    #opcoes button { width: 90%; }
 
-    .card {
-        margin: 30px 15px;
-        padding: 25px 20px;
-    }
-    
-    /* CORREÇÃO AGRESSIVA E DEFINITIVA: Força o aspecto quadrado e centraliza */
-    .roleta-wrapper {
-        width: 90vw !important; 
-        height: 90vw !important; /* FORÇA a altura igual à largura para ser um CÍRCULO */
-        margin: 20px auto !important; /* FORÇA a centralização e desfaz qualquer outra margem */
-    }
+    /* Ajustes FINOS da Splash Screen no mobile */
+    .splash-header { padding: 15px 5%; text-align: center; background-position: center 8px; background-size: auto 28px; }
+    .splash-logo-mark { display: none; } /* Esconde logo mark no mobile */
+    .splash-header-content { align-items: center; }
+    .splash-header-center { padding: 0; } /* Remove padding extra no mobile */
+    .splash-header-titles { padding-left: 0; margin-bottom: 12px; }
+    .splash-header-titles h1 { font-size: 1.6em; }
+    .splash-header-titles p { font-size: 0.75em; }
+    .splash-nav { justify-content: center; gap: 6px 12px; }
+    .splash-nav a { margin: 0 5px; font-size: 0.7em; }
 
-    /* O Canvas deve ocupar todo o wrapper */
-    #wheelCanvas {
-        width: 100% !important; 
-        height: 100% !important;
-    }
-    
-    #opcoes button {
-        width: 90%; 
-    }
+    .splash-main { flex-direction: column; padding: 30px 15px; gap: 35px; } /* Empilha */
+    .splash-main-left { order: 2; flex-basis: auto; width: 100%; align-items: center; margin-top: 0;}
+    .splash-main-right { order: 1; flex-basis: auto; width: 100%; text-align: center; }
 
-    .team-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 10px;
-    }
+    .splash-dragon { width: 150px; margin-bottom: 30px; } /* Ajustado */
+    .splash-main-right h2 { font-size: 2.8em; } /* Ajustado */
+    .splash-subtitle-main { font-size: 1.0em; margin-bottom: 25px;}
+    .splash-description { font-size: 0.9em; margin-bottom: 35px; max-width: 90%; }
+    .cta#comecar-btn { padding: 13px 35px; font-size: 0.95em; } /* Ajustado */
 
-    .team-member img {
-        width: 100px;
-        height: 100px;
-    }
+    .splash-footer { flex-direction: column; gap: 30px; padding: 30px; font-size: 0.85em; }
+     .footer-section { max-width: 90%; margin: 0 auto; }
+     .footer-icon { width: 40px; height: 40px; margin-bottom: 12px; }
+     .footer-section h3 { font-size: 1.0em; }
+     .footer-section p { font-size: 0.95em; }
+}
+
+/* Ajustes para telas MUITO pequenas */
+@media screen and (max-width: 380px) {
+    .splash-header { padding: 15px 5%; background-size: auto 25px; }
+    .splash-header-titles h1 { font-size: 1.5em; }
+    .splash-header-titles p { font-size: 0.65em; }
+    .splash-nav a { font-size: 0.65em; }
+
+    .splash-main-right h2 { font-size: 2.4em; }
+    .splash-subtitle-main { font-size: 0.8em; }
+    .splash-dragon { width: 120px; }
+    .splash-description { font-size: 0.85em;}
+    .cta#comecar-btn { padding: 11px 30px; font-size: 0.85em; }
+
+    .footer-icon { width: 35px; height: 35px; }
+    .footer-section h3 { font-size: 0.9em; }
+     .footer-section p { font-size: 0.9em; }
 }

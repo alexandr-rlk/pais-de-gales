@@ -1,147 +1,23 @@
 /* Estilos do botão de girar */
-#spinButton {
-    background: linear-gradient(45deg, #00b37e, #007f5f);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    margin: 20px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 179, 126, 0.3);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-    min-width: 200px;
-}
+#spinButton { background: linear-gradient(45deg, #00b37e, #007f5f); color: white; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 50px; cursor: pointer; margin: 20px auto; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 179, 126, 0.3); text-transform: uppercase; letter-spacing: 1px; position: relative; overflow: hidden; min-width: 200px; }
 
-/* Estilos da roleta */
-/* O .roleta-wrapper agora é responsivo pelo styles.css */
-.roleta-wrapper {
-    position: relative;
-    margin: 0 auto;
-}
+/* Imagem Central da Roleta */
+.centro-roleta { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; border-radius: 50%; border: 3px solid #FFD700; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 10; background-color: transparent; padding: 0; overflow: hidden; }
+.centro-roleta img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
-/* Imagem Central da Roleta (Dragão) */
-.centro-roleta {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid #FFD700;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    z-index: 10; 
-    /* CORREÇÃO CRÍTICA: Removido background-color e padding que causavam a "bola branca" */
-    background-color: transparent; 
-    padding: 0; 
-    overflow: hidden;
-}
+/* Efeitos do botão de girar */
+#spinButton::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
+#spinButton:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 179, 126, 0.4); background: linear-gradient(45deg, #00cc8f, #00b37e); }
+#spinButton:hover::before { left: 100%; }
+#spinButton:active { transform: translateY(1px); box-shadow: 0 2px 10px rgba(0, 179, 126, 0.3); }
+#spinButton:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+.spin-icon { display: none; }
 
-.centro-roleta img {
-    /* Garante que a imagem preencha o container */
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    border-radius: 50%;
-}
-
-#spinButton::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: 0.5s;
-}
-
-#spinButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 179, 126, 0.4);
-    background: linear-gradient(45deg, #00cc8f, #00b37e);
-}
-
-#spinButton:hover::before {
-    left: 100%;
-}
-
-#spinButton:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 10px rgba(0, 179, 126, 0.3);
-}
-
-#spinButton:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-.spin-icon {
-    display: none; 
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Estilo das opções de resposta (Corrigido para usar a cor cinza padrão) */
-#opcoes button {
-    background: linear-gradient(45deg, #b0b0b0, #9a9a9a);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 8px 0;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    width: 100%;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-}
-
-#opcoes button:hover {
-    background: linear-gradient(45deg, #9a9a9a, #b0b0b0);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-#opcoes button:active {
-    transform: translateY(1px);
-}
+/* Estilo das opções de resposta (Cor cinza) */
+#opcoes button { background: linear-gradient(45deg, #b0b0b0, #9a9a9a); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; margin: 8px 0; transition: all 0.3s ease; font-weight: bold; width: 100%; text-align: left; position: relative; overflow: hidden; }
+#opcoes button:hover { background: linear-gradient(45deg, #9a9a9a, #b0b0b0); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+#opcoes button:active { transform: translateY(1px); }
 
 /* Estilo do feedback */
-#feedback {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 10px;
-    font-weight: bold;
-    text-align: center;
-    animation: fadeInUp 0.5s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+#feedback { margin-top: 20px; padding: 15px; border-radius: 10px; font-weight: bold; text-align: center; animation: fadeInUp 0.5s ease-out; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
