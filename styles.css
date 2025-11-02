@@ -60,11 +60,9 @@ body {
     overflow: hidden;
     display: flex; align-items: center; justify-content: space-between;
     min-height: 100px;
-    /* Fundo com imagem do dragão: APENAS EM DESKTOP POR PADRÃO */
-    background-image: url('assets/dragão.png'); 
-    background-repeat: no-repeat;
-    background-position: 22% 50%; 
-    background-size: auto 80%; 
+    
+    /* MODIFICADO: REMOVE O DRAGÃO DO CABEÇALHO PADRÃO */
+    background-image: none;
 }
 
 /* Navegação: OCULTA POR PADRÃO */
@@ -92,9 +90,8 @@ body.content-active .splash-header {
     padding-bottom: 5px;
     min-height: 60px; 
     
-    /* Desktop: Dragão maior e à esquerda */
-    background-size: auto 90%; 
-    background-position: 5% 50%; 
+    /* MODIFICADO: REMOVE O DRAGÃO DO CABEÇALHO ENCOLHIDO */
+    background-image: none;
 }
 
 /* Estilos para reduzir texto/navegação no estado shrink */
@@ -156,7 +153,7 @@ body.content-active .splash-header {
 
 /* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo */
 body.content-active .topics-container {
-    padding-top: 160px; /* Compensa a altura do header fixo (Desktop) */
+    padding-top: 100px; /* Reduzido, pois o dragão não ocupa espaço */
 }
 
 
@@ -325,14 +322,9 @@ body.content-active .topics-container {
         padding: 15px 5%; 
         text-align: center; 
         
-        /* NOVO: Oculta o dragão completamente no celular */
-        background-image: none; 
-    } 
-    
-    .splash-header.shrink {
-        /* Garante que não haja background-image no estado shrink em mobile */
+        /* O cabeçalho já está sem background-image, mas mantemos a regra de media para segurança */
         background-image: none;
-    }
+    } 
     
     .splash-header-titles h1 { font-size: 1.6em; }
     
@@ -360,8 +352,7 @@ body.content-active .topics-container {
 
     /* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo (mobile) */
     body.content-active .topics-container {
-        /* Ajusta o padding-top já que o dragão não ocupa mais espaço */
-        padding-top: 110px; 
+        padding-top: 110px; /* Ajuste para o header fixo sem o dragão */
     }
     
     /* Ajustes dos Tópicos (MANTÉM padding normal) */
