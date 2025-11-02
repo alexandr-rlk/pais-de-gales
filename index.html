@@ -3,91 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>País de Gales - Coração do Dragão</title>
+    <title>País de Gales</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="spin-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700;900&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/ico" href="assets/icone.ico">
 </head>
 <body>
 
     <div id="splash-screen">
         <header class="splash-header">
-             <img src="assets/dragão.png" alt="Logo Mark Dragão" class="splash-logo-mark">
+            
             <div class="splash-header-center">
                 <div class="splash-header-titles">
-                    <h1>CORAÇÃO DO DRAGÃO</h1>
-                    <p>DESCUBRA O PAÍS DE GALES</p>
+                    <h1>FESTIVAL MUNDO</h1>
+                    <p>PAÍS DE GALES</p>
                 </div>
                 <nav class="splash-nav">
-                    <a href="#">INÍCIO</a>
-                    <a href="#">PAISAGENS E NATUREZA</a>
-                    <a href="#">CULTURA E MÚSICA</a>
-                    <a href="#">LITERATURA</a>
+                    <a href="#splash-screen" id="nav-inicio-link">INÍCIO</a> 
+                    <a href="#cultura">CULTURA</a>
+                    <a href="#culinaria">CULINÁRIA</a>
+                    <a href="#musica">MÚSICA</a>
+                    <a href="#poesias">POESIAS</a>
+                    <a href="#arte">ARTE</a>
+                    <a href="#curiosidades">CURIOSIDADES</a>
+                    <a href="#equipe">INTEGRANTES</a>
                 </nav>
             </div>
-             <div class="splash-header-placeholder"></div>
+             
         </header>
+
         <main class="splash-main">
             <div class="splash-main-left">
                 <img src="assets/dragão.png" alt="Dragão Vermelho Grande" class="splash-dragon">
-                <a class="cta" id="comecar-btn" href="#start" role="button" aria-label="Começar — descobrir o País de Gales">COMEÇAR</a>
+                <a class="cta" id="comecar-btn" href="#topicos" role="button">COMEÇAR</a>
             </div>
             <div class="splash-main-right">
-                 <h2>CORAÇÃO<br>DO DRAGÃO</h2>
+                <h2>CORAÇÃO<br>DO DRAGÃO</h2>
                 <p class="splash-subtitle-main">DESCUBRA O PAÍS DE GALES</p>
                 <p class="splash-description">
-                    Explore o famoso país do dragão, suas paisagens deslumbrantes, rica cultura é tradições,
+                    Entre muralhas milenares e a voz dos corais, o País de Gales (Cymru) é uma terra de lendas, língua celta vibrante e uma resistência histórica simbolizada pelo dragão vermelho. Descubra o coração cultural do Reino Unido.
                 </p>
             </div>
         </main>
-        <footer class="splash-footer">
-             <div class="footer-section">
-                 <img src="assets/montanha.png" alt="" class="footer-icon">
-                <h3>PAISAGENS E NATUREZA</h3>
-                <p>Montanhas de Snowdonia, litoral, castelos medievais</p>
-            </div>
-             <div class="footer-section">
-                 <img src="assets/nota.png" alt="" class="footer-icon">
-                <h3>CULTURA E MÚSICA</h3>
-                <p>Corais galeses, festival Eisteddfod, idioma galês</p>
-            </div>
-             <div class="footer-section">
-                 <img src="assets/livro.png" alt="" class="footer-icon">
-                <h3>LITERATURA</h3>
-                <p>The Mabinogion, Under Milk Wood</p>
-            </div>
-        </footer>
-    </div>
-    <div id="main-content" style="display: none;">
-        <header role="banner"><h1>País de Gales</h1><nav><a href="#inicio">Início</a> <a href="#cultura">Cultura</a> <a href="#culinaria">Culinária</a> <a href="#musica">Música</a> <a href="#roleta">Roleta</a></nav></header>
-        <main role="main">
-            <section id="inicio" class="card"><h2>Bem-vindo!</h2><p>...</p></section>
-            <section id="cultura" class="card"><h2>Cultura</h2><p>...</p></section>
-            <section id="culinaria" class="card"><h2>Culinária</h2><p>...</p></section>
-            <section id="musica" class="card"><h2>Música</h2><p>...</p></section>
-            <section id="roleta" class="card">
-                <h2>Roleta de Perguntas</h2>
-                <div class="roleta-wrapper"><canvas id="wheelCanvas" width="400" height="400"></canvas><div class="arrow">▼</div><div class="centro-roleta"><img src="assets/roleta.jpg" alt="Centro da Roleta"></div></div>
-                <button id="spinButton">Girar a Roleta</button>
-                <div id="pergunta-container" class="hidden pergunta-animation"><h3 id="pergunta"></h3> <div id="opcoes"></div> <p id="feedback"></p></div>
-            </section>
-            <section id="equipe">
-                <h2>Equipe</h2>
-                <div class="team-container">
-                     <div class="team-member"><img src="assets/alexandre.jpg" alt="Alexandre"><p>Alexandre</p></div>
-                     <div class="team-member"><img src="assets/carla.jpg" alt="Carla"><p>Carla</p></div>
-                     <div class="team-member"><img src="assets/emily.jpg" alt="Emily"><p>Emily</p></div>
-                     <div class="team-member"><img src="assets/fernanda.jpg" alt="Fernanda"><p>Fernanda</p></div>
-                     <div class="team-member"><img src="assets/hadassa.jpg" alt="Hadassa"><p>Hadassa</p></div>
-                     <div class="team-member"><img src="assets/larissa.jpg" alt="Larissa"><p>Larissa</p></div>
-                     <div class="team-member"><img src="assets/milena.jpg" alt="Milena"><p>Milena</p></div>
-                     <div class="team-member"><img src="assets/dinho.jpg" alt="Dinho"><p>Dinho</p></div>
+        
+        <section class="topics-container hidden-content" id="topicos">
+            
+            <div class="topic-grid">
+                <div id="cultura" class="topic-item">
+                    <h2 class="topic-title">Cultura</h2>
+                    <p>O País de Gales é conhecido por suas tradições celtas, castelos medievais e orgulho nacional. O idioma galês (Cymraeg) é falado por boa parte da população e é símbolo da identidade local. As festas, como o Eisteddfod — festival de música, poesia e arte — celebram a herança cultural do país.</p>
                 </div>
-            </section>
-        </main>
-        <footer role="contentinfo"><img src="assets/logo.png" alt="IF Sertão-PE" class="logo-footer"><p>&copy; 2025 - Trabalho Escolar</p></footer>
-    </div> <script src="script.js"></script>
+
+                <div id="culinaria" class="topic-item">
+                    <h2 class="topic-title">Culinária</h2>
+                    <p>A culinária galesa valoriza ingredientes simples e locais. Pratos típicos incluem o cawl (ensopado de carne e legumes), o Welsh rarebit (torrada com molho de queijo) e o bara brith (pão de frutas). O país também é famoso pelos queijos e pelo cordeiro galês.</p>
+                </div>
+
+                <div id="musica" class="topic-item">
+                    <h2 class="topic-title">Música</h2>
+                    <p>A música é parte essencial da alma galesa. Conhecido como a "Terra das Canções", o país tem forte tradição em corais e hinos. Artistas modernos como Tom Jones, Shirley Bassey e Bonnie Tyler levaram o som galês ao mundo. A harpa é o instrumento nacional e aparece em muitas composições folclóricas.</p>
+                </div>
+                
+                <div id="personalidades" class="topic-item">
+                    <h2 class="topic-title">Personalidades</h2>
+                    <p>Entre os nomes mais conhecidos estão o ator Anthony Hopkins, o cantor Tom Jones e a estilista Laura Ashley. Todos representam o talento e a criatividade que marcam o povo galês.</p>
+                </div>
+
+                <div id="poesias" class="topic-item">
+                    <h2 class="topic-title">Poesias</h2>
+                    <p>A poesia tem papel central na cultura galesa. O país celebra poetas desde a Idade Média, e o Eisteddfod é o maior festival literário do Reino Unido. Poetas como Dylan Thomas são lembrados por versos intensos e cheios de emoção.</p>
+                </div>
+                
+                <div id="arte" class="topic-item">
+                    <h2 class="topic-title">Arte</h2>
+                    <p>A arte galesa combina paisagens naturais com símbolos celtas. Pintores como Kyffin Williams retrataram as montanhas e vilas do país. A arte contemporânea do País de Gales mistura tradição e modernidade, destacando o orgulho e a força de sua cultura.</p>
+                </div>
+
+                <div id="curiosidades" class="topic-item">
+                    <h2 class="topic-title">Curiosidades</h2>
+                    <p>o Dragão vermelho utilizado na bandeira do País de Gales, é oriundo de uma lenda celta, na qual ouve uma guerra entre o dragão branco que representava os invasores anglo-saxões e o dragão vermelho que representa um símbolo da coragem e resistência galesa, e como podemos perceber por motivos óbvios o dragão vermelho venceu a guerra se tornando assim o símbolo do país</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="equipe" class="hidden-content team-section-style">
+            <h2>INTEGRANTES</h2>
+            <div class="team-container">
+                 <div class="team-member"><img src="assets/alexandre.jpg" alt="Alexandre"><p>Alexandre</p></div>
+                 <div class="team-member"><img src="assets/carla.jpg" alt="Carla"><p>Carla</p></div>
+                 <div class="team-member"><img src="assets/emily.jpg" alt="Emily"><p>Emily</p></div>
+                 <div class="team-member"><img src="assets/fernanda.jpg" alt="Fernanda"><p>Fernanda</p></div>
+                 <div class="team-member"><img src="assets/hadassa.jpg" alt="Hadassa"><p>Hadassa</p></div>
+                 <div class="team-member"><img src="assets/larissa.jpg" alt="Larissa"><p>Larissa</p></div>
+                 <div class="team-member"><img src="assets/milena.jpg" alt="Milena"><p>Milena</p></div>
+                 <div class="team-member"><img src="assets/dinho.jpg" alt="Dinho"><p>Dinho</p></div> 
+            </div>
+        </section>
+
+        <div class="footer-copyright">
+            <img src="assets/logo.png" alt="IF Sertão-PE" class="logo-footer">
+            <p>&copy; 2025 - Alexandre</p>
+        </div>
+
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
