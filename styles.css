@@ -60,7 +60,7 @@ body {
     overflow: hidden;
     display: flex; align-items: center; justify-content: space-between;
     min-height: 100px;
-    /* Fundo com imagem do dragão: POSIÇÃO ORIGINAL SOLICITADA */
+    /* Fundo com imagem do dragão: APENAS EM DESKTOP POR PADRÃO */
     background-image: url('assets/dragão.png'); 
     background-repeat: no-repeat;
     background-position: 22% 50%; 
@@ -92,9 +92,9 @@ body.content-active .splash-header {
     padding-bottom: 5px;
     min-height: 60px; 
     
-    /* REVERTIDO: Voltando ao tamanho original do shrink para não quebrar */
-    background-size: auto 50%; 
-    background-position: 10% 50%; 
+    /* Desktop: Dragão maior e à esquerda */
+    background-size: auto 90%; 
+    background-position: 5% 50%; 
 }
 
 /* Estilos para reduzir texto/navegação no estado shrink */
@@ -114,7 +114,7 @@ body.content-active .splash-header {
 /* Centraliza o conteúdo e garante que fique acima do dragão (z-index) */
 .splash-header-center {
     position: relative; 
-    z-index: 2; /* Garante que o texto e nav fiquem acima do background-image do dragão */
+    z-index: 2; 
     display: flex; 
     flex-direction: column;
     align-items: center; 
@@ -156,7 +156,7 @@ body.content-active .splash-header {
 
 /* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo */
 body.content-active .topics-container {
-    padding-top: 160px; /* Compensa a altura do header fixo */
+    padding-top: 160px; /* Compensa a altura do header fixo (Desktop) */
 }
 
 
@@ -320,20 +320,18 @@ body.content-active .topics-container {
 
 /* === RESPONSIVIDADE (MOBILE) === */
 @media screen and (max-width: 768px) {
-    /* AJUSTADO: Dragão centralizado em mobile para não quebrar o layout */
+    
     .splash-header { 
         padding: 15px 5%; 
         text-align: center; 
         
-        /* Dragão pequeno e centralizado no cabeçalho GRANDE */
-        background-position: 50% 10px; 
-        background-size: auto 35px; /* Tamanho um pouco maior que o original (28px) */
+        /* NOVO: Oculta o dragão completamente no celular */
+        background-image: none; 
     } 
     
-    /* Quando encolhe, o dragão volta a ser centralizado/pequeno, mas a navegação aparece */
     .splash-header.shrink {
-        background-position: 50% 50%; 
-        background-size: auto 35px; /* Mantém o dragão visível e centralizado */
+        /* Garante que não haja background-image no estado shrink em mobile */
+        background-image: none;
     }
     
     .splash-header-titles h1 { font-size: 1.6em; }
@@ -342,9 +340,8 @@ body.content-active .topics-container {
     .splash-nav { display: none; }
     body.content-active .splash-nav { 
         display: flex; 
-        /* Adiciona margem para separar do título encolhido */
         margin-top: 5px; 
-        gap: 5px 10px; /* Reduz o espaço entre os links */
+        gap: 5px 10px; 
     }
     
     .splash-header-center { max-width: 100%; margin: 0;}
@@ -363,8 +360,8 @@ body.content-active .topics-container {
 
     /* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo (mobile) */
     body.content-active .topics-container {
-        /* Aumenta a compensação para dar espaço à navegação que apareceu */
-        padding-top: 140px; 
+        /* Ajusta o padding-top já que o dragão não ocupa mais espaço */
+        padding-top: 110px; 
     }
     
     /* Ajustes dos Tópicos (MANTÉM padding normal) */
@@ -390,8 +387,8 @@ body.content-active .topics-container {
     .team-member img { width: 70px; height: 70px; }
     .team-member p { font-size: 0.8em; }
     
-    /* Compensa o caso de ter mais links em telas muito pequenas */
+    /* Aumenta um pouco mais para telas muito pequenas */
     body.content-active .topics-container {
-        padding-top: 170px; 
+        padding-top: 120px; 
     }
 }
