@@ -61,7 +61,7 @@ body {
     display: flex; align-items: center; justify-content: space-between;
     min-height: 100px;
     
-    /* MODIFICADO: REMOVE O DRAGÃO DO CABEÇALHO PADRÃO */
+    /* REMOÇÃO PERMANENTE DO DRAGÃO DE FUNDO DO HEADER */
     background-image: none;
 }
 
@@ -90,7 +90,7 @@ body.content-active .splash-header {
     padding-bottom: 5px;
     min-height: 60px; 
     
-    /* MODIFICADO: REMOVE O DRAGÃO DO CABEÇALHO ENCOLHIDO */
+    /* REMOÇÃO PERMANENTE DO DRAGÃO DE FUNDO DO HEADER */
     background-image: none;
 }
 
@@ -108,7 +108,7 @@ body.content-active .splash-header {
     transition: font-size 0.4s ease;
 }
 
-/* Centraliza o conteúdo e garante que fique acima do dragão (z-index) */
+/* Centraliza o conteúdo */
 .splash-header-center {
     position: relative; 
     z-index: 2; 
@@ -127,7 +127,6 @@ body.content-active .splash-header {
     font-weight: 700; color: var(--cream-light); margin-bottom: 2px;
     letter-spacing: 1px; line-height: 1.1; text-transform: uppercase;
 }
-/* AUMENTA O TAMANHO DO PAÍS DE GALES para empurrar a navegação */
 .splash-header-titles p {
     font-size: clamp(1.1em, 2.8vw, 1.4em); 
     font-weight: bold; color: var(--text-header-nav);
@@ -153,7 +152,7 @@ body.content-active .splash-header {
 
 /* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo */
 body.content-active .topics-container {
-    padding-top: 100px; /* Reduzido, pois o dragão não ocupa espaço */
+    padding-top: 100px; 
 }
 
 
@@ -321,8 +320,6 @@ body.content-active .topics-container {
     .splash-header { 
         padding: 15px 5%; 
         text-align: center; 
-        
-        /* O cabeçalho já está sem background-image, mas mantemos a regra de media para segurança */
         background-image: none;
     } 
     
@@ -340,19 +337,25 @@ body.content-active .topics-container {
     
     .splash-main {
         flex-direction: column; 
-        padding: 30px 15px; 
-        gap: 35px;
+        padding: 40px 15px; 
+        gap: 30px;
         margin-top: 0; 
     }
     
     .splash-main-left { order: 2; flex-basis: auto; width: 100%; align-items: center; margin-top: 0;}
     .splash-main-right { order: 1; flex-basis: auto; width: 100%; text-align: center; }
-    .splash-dragon { max-width: 150px; margin-bottom: 30px; } 
+    
+    /* MODIFICADO: AUMENTA MAIS O DRAGÃO CENTRAL */
+    .splash-dragon { 
+        max-width: 250px; /* Aumentado de 200px para 250px */
+        margin-bottom: 35px; 
+    } 
+    
     .cta#comecar-btn { padding: 13px 35px; font-size: 0.95em; }
 
     /* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo (mobile) */
     body.content-active .topics-container {
-        padding-top: 110px; /* Ajuste para o header fixo sem o dragão */
+        padding-top: 110px; 
     }
     
     /* Ajustes dos Tópicos (MANTÉM padding normal) */
