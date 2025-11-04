@@ -25,9 +25,15 @@
                     <a href="#cultura">CULTURA</a>
                     <a href="#culinaria">CULINÁRIA</a>
                     <a href="#musica">MÚSICA</a>
+                    <a href="#historia">HISTÓRIA</a>
                     <a href="#poesias">POESIAS</a>
                     <a href="#arte">ARTE</a>
+                    <a href="#gales-hoje">GALES HOJE</a>
                     <a href="#curiosidades">CURIOSIDADES</a>
+                    <a href="#mapa-interativo">MAPA</a>
+                    <a href="#links-de-interesse">LINKS</a>
+                    <a href="#quiz-interativo">QUIZ</a> 
+                    <a href="#feedback">FEEDBACK</a> 
                     <a href="#equipe">INTEGRANTES</a>
                 </nav>
             </div>
@@ -51,41 +57,249 @@
         <section class="topics-container hidden-content" id="topicos">
             
             <div class="topic-grid">
-                <div id="cultura" class="topic-item">
-                    <h2 class="topic-title">Cultura</h2>
-                    <p>O País de Gales é conhecido por suas tradições celtas, castelos medievais e forte orgulho nacional. O inglês é a língua principal e falada pela maioria da população, um elemento essencial na comunicação diária. As festas, como o famoso Eisteddfod, festival de música, poesia e arte, celebram intensamente a rica herança cultural do país.</p>
+                
+                <div id="cultura" class="topic-item with-image">
+                    <div class="topic-content">
+                        <h2 class="topic-title">Cultura</h2>
+                        <p>O País de Gales é conhecido por suas tradições celtas, castelos medievais e forte orgulho nacional. O inglês é a língua principal e falada pela maioria da população, um elemento essencial na comunicação diária. As festas, como o famoso Eisteddfod, festival de música, poesia e arte, celebram intensamente a rica herança cultural do país.</p>
+                    </div>
+                    <div class="topic-image">
+                        <img src="assets/cultura.jpg" alt="Castelo em Gales, representando a cultura">
+                    </div>
                 </div>
 
-                <div id="culinaria" class="topic-item">
-                    <h2 class="topic-title">Culinária</h2>
-                    <p>A culinária galesa valoriza ingredientes simples e locais. Entre os pratos típicos estão o cawl (ensopado de carne e legumes), o Welsh rarebit (torrada com molho de queijo) e o bara brith (pão de frutas). Além disso, o País de Gales é famoso pela qualidade de seus queijos e do cordeiro galês.</p>
-                </div>
-
-                <div id="musica" class="topic-item">
-                    <h2 class="topic-title">Música</h2>
-                    <p>A música é essencial para o País de Gales, que é conhecido como a "Terra das Canções". Há uma forte e histórica tradição em corais e hinos. A harpa é o instrumento nacional e é usada em muitas composições folclóricas. Artistas modernos como Tom Jones, Shirley Bassey e Bonnie Tyler ajudaram a popularizar o som galês no cenário mundial.</p>
+                <div id="culinaria" class="topic-item with-image">
+                    <div class="topic-content">
+                        <h2 class="topic-title">Culinária</h2>
+                        <p>A culinária galesa valoriza ingredientes simples e locais. Entre os pratos típicos estão o cawl (ensopado de carne e legumes), o Welsh rarebit (torrada com molho de queijo) e o bara brith (pão de frutas). Além disso, o País de Gales é famoso pela qualidade de seus queijos e do cordeiro galês.</p>
+                    </div>
+                    <div class="topic-image">
+                        <img src="assets/culinaria.jpg" alt="Welsh Rarebit (torrada de queijo), representando a culinária">
+                    </div>
                 </div>
                 
-                <div id="personalidades" class="topic-item">
-                    <h2 class="topic-title">Personalidades</h2>
-                    <p>O talento e a criatividade do povo galês são representados por nomes mundialmente conhecidos. Entre eles, destacam-se o ator Anthony Hopkins, o cantor Tom Jones e a estilista Laura Ashley.</p>
-                </div>
+                <div id="musica" class="topic-item music-item">
+                    <h2 class="topic-title">Música</h2>
+                    <p>A música é essencial para o País de Gales, que é conhecido como a "Terra das Canções". Há uma forte e histórica tradição em corais e hinos. A harpa é o instrumento nacional e é usada em muitas composições folclóricas. Artistas modernos como Tom Jones, Shirley Bassey e Bonnie Tyler ajudaram a popularizar o som galês no cenário mundial.</p>
 
+                    <div class="video-container local-video">
+                        <video controls class="html5-video">
+                            <source src="assets/musica_galesa.mp4" type="video/mp4">
+                            Seu navegador não suporta vídeos em MP4.
+                        </video>
+                    </div>
+
+                    <div class="harpa-audio-container">
+                        <p>Ouça o som da Harpa, o instrumento nacional de Gales:</p>
+                        <audio controls class="audio-player">
+                            <source src="assets/harpa.mp3" type="audio/mp3">
+                            Seu navegador não suporta a tag de áudio.
+                        </audio>
+                    </div>
+                </div>
+                
+                <div id="historia" class="topic-item timeline-item">
+                    <h2 class="topic-title">História</h2>
+                    <div class="timeline-container">
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">500 a.C.</div>
+                            <div class="timeline-content">
+                                <h3>Celtas</h3>
+                                <p>Os celtas, incluindo as tribos galesas, estabelecem-se na região, dando origem à identidade cultural e linguística.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">48 - 410 d.C.</div>
+                            <div class="timeline-content">
+                                <h3>Império Romano</h3>
+                                <p>A região do País de Gales é invadida e ocupada pelos romanos. Fortes são construídos, mas o controle romano sobre as montanhas é limitado.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">Séculos V - VIII</div>
+                            <div class="timeline-content">
+                                <h3>A Idade dos Santos</h3>
+                                <p>Gales se torna um refúgio para a cultura celta e o cristianismo. Lendas do Rei Arthur surgem e se popularizam.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">1284</div>
+                            <div class="timeline-content">
+                                <h3>Estatuto de Rhuddlan</h3>
+                                <p>Após a conquista por Eduardo I da Inglaterra, Gales é anexado. Inicia-se a construção dos grandes castelos ingleses.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">1997</div>
+                            <div class="timeline-content">
+                                <h3>Devolução</h3>
+                                <p>Criação da Assembleia Nacional de Gales (agora Senedd Cymru), marcando um retorno significativo à autogovernança e fortalecendo a identidade nacional.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
                 <div id="poesias" class="topic-item">
                     <h2 class="topic-title">Poesias</h2>
                     <p>A poesia tem um papel central e histórico na cultura galesa. O país celebra a arte dos poetas desde a Idade Média. Atualmente, o Eisteddfod se destaca como o maior festival literário do Reino Unido. Nomes como Dylan Thomas são lembrados mundialmente por seus versos intensos e carregados de emoção.</p>
+                    
+                    <div class="poesia-quote">
+                        <p>Não entre suavemente nessa boa noite. A velhice deve arder e delirar ao fechar do dia. Raiva, raiva contra o findar da luz.</p>
+                        <cite>— Dylan Thomas</cite>
+                    </div>
+                    
                 </div>
                 
                 <div id="arte" class="topic-item">
                     <h2 class="topic-title">Arte</h2>
                     <p>A arte galesa é uma combinação rica de paisagens naturais e símbolos celtas. Artistas como o pintor Kyffin Williams dedicaram suas obras a retratar as montanhas e vilas do país. Atualmente, a arte contemporânea mistura tradição e modernidade, um reflexo do orgulho e da força da cultura galesa.</p>
+                    
+                    <div class="slider-container">
+                        <div class="slider-wrapper">
+                            
+                            <div class="slider-item">
+                                <img src="assets/arte_slider_1.jpg" alt="Pintura de Paisagem Galesa" class="slider-image">
+                                <div class="slider-text">
+                                    <h3>A Força da Paisagem</h3>
+                                    <p>As montanhas e a costa galesa são temas recorrentes na arte, capturando a beleza rústica e o misticismo da nação.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="slider-item">
+                                <img src="assets/arte_slider_2.jpg" alt="Arte Celta ou Dragão" class="slider-image">
+                                <div class="slider-text">
+                                    <h3>Símbolos Celtas</h3>
+                                    <p>O Dragão Vermelho e outros nós celtas são elementos poderosos que representam a herança e o orgulho cultural.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="slider-item">
+                                <img src="assets/arte_slider_3.jpg" alt="Kyffin Williams e retrato da aldeia" class="slider-image">
+                                <div class="slider-text">
+                                    <h3>Kyffin Williams</h3>
+                                    <p>O mais célebre artista moderno galês, conhecido por suas pinceladas grossas e sombrias, retratando o povo e a terra de Anglesey.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <button class="slider-btn prev-btn" id="prev-slide">❮</button>
+                        <button class="slider-btn next-btn" id="next-slide">❯</button>
+                    </div>
+                    </div>
+                
+                <div id="gales-hoje" class="topic-item">
+                    <h2 class="topic-title">O País de Gales Hoje</h2>
+                    <p>Conheça a situação atual da nação, abrangendo seus aspectos políticos, econômicos e a vibrante cena cultural e esportiva moderna.</p>
+                    
+                    <div class="wales-hoje-image-container">
+                        <img src="assets/cardiff_moderna.jpg" alt="Imagem moderna de Cardiff, capital do País de Gales" class="wales-hoje-image">
+                    </div>
+
+                    <div class="wales-hoje-content">
+                        <div class="wales-hoje-info">
+                            <h3>Parte Política</h3>
+                            <p>O País de Gales possui um grau de autogoverno com seu próprio parlamento, o Senedd Cymru (Parlamento Galês), responsável por legislar em áreas como saúde, educação e transporte. Isso reflete um forte sentimento de identidade nacional e uma crescente autonomia dentro do Reino Unido.</p>
+                        </div>
+                        <div class="wales-hoje-info">
+                            <h3>Economia</h3>
+                            <p>A economia galesa se transformou, passando de uma base industrial pesada (carvão e aço) para uma que prioriza serviços, tecnologia, finanças e turismo. A agricultura e a produção de alimentos de alta qualidade, como o cordeiro galês, continuam sendo setores importantes.</p>
+                        </div>
+                        <div class="wales-hoje-info">
+                            <h3>Esportes e Cultura Moderna</h3>
+                            <p>O Rugby é o esporte nacional, com a equipe galesa sendo uma das mais fortes do mundo. Além disso, a cena cultural moderna é efervescente, com festivais de música e a produção cinematográfica e televisiva crescendo, reforçando a imagem moderna e dinâmica de Gales.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="curiosidades" class="topic-item">
+                 <div id="curiosidades" class="topic-item">
                     <h2 class="topic-title">Curiosidades</h2>
                     <p>O Dragão Vermelho, símbolo nacional, é oriundo de uma lenda celta de batalha. A história narra uma guerra entre o dragão branco (símbolo dos invasores anglo-saxões) e o dragão vermelho (símbolo da coragem e resistência galesa). O dragão vermelho venceu a guerra, eternizando-se na bandeira como o emblema oficial do País de Gales.</p>
                 </div>
-            </div>
+
+                <div id="mapa-interativo" class="topic-item map-item">
+                    <h2 class="topic-title">País de Gales no Mapa</h2>
+                    <p>Explore o território do País de Gales, suas principais cidades, montanhas e a longa costa.</p>
+                    
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1667438.3360548815!2d-4.502909470940742!3d52.33965942205518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486016c68e982181%3A0xc3f8e5b61f9d5010!2sPa%C3%ADs%20de%20Gales!5e0!3m2!1spt-BR!2sbr!4v1669894411135!5m2!1spt-BR!2sbr" 
+                            width="600" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                       <div id="links-de-interesse" class="topic-item">
+                    <h2 class="topic-title">Links de Interesse</h2>
+                    <p>Aprofunde sua pesquisa e descubra mais sobre o País de Gales em sites oficiais e fontes externas confiáveis.</p>
+                    
+                    <ul class="links-de-interesse-list">
+                        <li>
+                            <a href="https://www.visitwales.com/" target="_blank" rel="noopener noreferrer">Site Oficial de Turismo do País de Gales</a>
+                        </li>
+                        <li>
+                            <a href="https://pt.wikipedia.org/wiki/Pa%C3%ADs_de_Gales" target="_blank" rel="noopener noreferrer">País de Gales na Wikipédia (PT)</a>
+                        </li>
+                        <li>
+                            <a href="https://www.bbc.com/news/topics/cgn4qj23924t/wales" target="_blank" rel="noopener noreferrer">Notícias e Conteúdo Cultural (BBC Wales)</a>
+                        </li>
+                    </ul>
+                </div>
+
+                    <p class="map-note">O mapa permite zoom e navegação para explorar a geografia e as cidades galesas.</p>
+                </div>
+                
+                <div id="quiz-interativo" class="topic-item quiz-item">
+                    <h2 class="topic-title">Teste seu Conhecimento!</h2>
+                    <p>Responda às perguntas abaixo e descubra se você sabe mesmo.</p>
+                    
+                    <button id="start-quiz-btn" class="cta">Começar o Quiz</button>
+                    
+                    <div id="quiz-content-wrapper" style="display:none;">
+                        <div id="quiz-container">
+                            </div>
+                        
+                        <div id="quiz-results" style="display:none;">
+                            <h3 id="results-message"></h3>
+                            <p id="results-score"></p>
+                            <button id="restart-quiz-btn" class="cta">Tentar Novamente</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div id="feedback" class="topic-item">
+                    <h2 class="topic-title">Feedback do Visitante</h2>
+                    <p>Sua opinião é importante! Deixe seu comentário e me ajude a melhorar.</p>
+                    
+                    <div class="feedback-form-container">
+                        <h3>Envie seu Feedback</h3>
+                        <form id="feedback-form">
+                            <div class="form-group">
+                                <label for="nome-feedback">Seu Nome (Opcional):</label>
+                                <input type="text" id="nome-feedback" name="nome" placeholder="Seu nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="texto-feedback">Seu Feedback (Obrigatório):</label>
+                                <textarea id="texto-feedback" name="feedback" required placeholder="Escreva seu comentário ou sugestão aqui..."></textarea>
+                            </div>
+                            <button type="submit" id="feedback-submit-btn" class="cta">Enviar Feedback</button>
+                        </form>
+                        <div id="feedback-message" style="display:none;">
+                            Obrigado pelo seu feedback! Ele é muito importante para nós.
+                        </div>
+                    </div>
+                </div>
+                </div>
         </section>
         
         <section id="equipe" class="hidden-content team-section-style">
@@ -104,10 +318,10 @@
 
         <div class="footer-copyright">
             <img src="assets/logo.png" alt="IF Sertão-PE" class="logo-footer">
-            <p>&copy; 2025 - Alexandre</p>
+            <p>© 2025 - Alexandre</p>
         </div>
-
-    </div>
+        
+        </div>
     
     <script src="script.js"></script>
 </body>
