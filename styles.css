@@ -6,7 +6,7 @@
     max-width: 100%;
 }
 
-/* === VARIÁVEIS DE COR === */
+/* === variaveus de cor === */
 :root {
   --red-header: #7f1818; 
   --cream-bg: #f5eadf; 
@@ -20,23 +20,23 @@
   --text-header-nav-hover: #ffffff;
   --icon-red: var(--red-header);
   --icon-green: var(--green-dark);
-  /* NOVAS VARIÁVEIS DE QUIZ */
+  /* novas */
   --color-correct: #38a169; /* Verde para acerto */
   --color-incorrect: #e53e3e; /* Vermelho para erro */
   --color-quiz-border: #ccc;
   --color-option-hover: #f0f0f0;
   
-  /* NOVAS VARIÁVEIS GERAIS E DE FORMULÁRIO/GALERIA */
+  /* formulario */
   --color-accent-link: var(--red-header); /* Cor dos links clicáveis */
   --form-bg: var(--cream-light);
   --form-border: #dcdcdc;
 }
 
-/* === ESTILO: SCROLLBAR PERSONALIZADA === */
-/* Para navegadores baseados em WebKit (Chrome, Safari) */
+/* === scroll === */
+/* para safari */
 ::-webkit-scrollbar {
-    width: 8px; /* Largura da barra de rolagem */
-    background-color: var(--cream-bg); /* Cor do fundo da trilha */
+    width: 8px; /* largura*/
+    background-color: var(--cream-bg); /* fundo trilha */
 }
 
 ::-webkit-scrollbar-thumb {
