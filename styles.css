@@ -19,29 +19,29 @@
   --text-header-nav-hover: #ffffff;
   --icon-red: var(--red-header);
   --icon-green: var(--green-dark);
-    --color-correct: #38a169; /* Verde para acerto */
-  --color-incorrect: #e53e3e; /* Vermelho para erro */
+    --color-correct: #38a169; 
+  --color-incorrect: #e53e3e; 
   --color-quiz-border: #ccc;
   --color-option-hover: #f0f0f0;
   
-    --color-accent-link: var(--red-header); /* Cor dos links clicáveis */
+    --color-accent-link: var(--red-header); 
   --form-bg: var(--cream-light);
   --form-border: #dcdcdc;
 }
 
 ::-webkit-scrollbar {
-    width: 8px; /* largura*/
-    background-color: var(--cream-bg); /* fundo trilha */
+    width: 8px; 
+    background-color: var(--cream-bg); 
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--green-dark); /* Cor do "polegar" (a parte que se move) */
-    border-radius: 4px; /* Bordas arredondadas no polegar */
-    border: 1px solid var(--cream-bg); /* Pequena borda para separação visual */
+    background-color: var(--green-dark); 
+    border-radius: 4px; 
+    border: 1px solid var(--cream-bg); 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--green-dark-2); /* Cor ao passar o mouse */
+    background-color: var(--green-dark-2); 
 }
 
 
@@ -59,11 +59,11 @@ body {
 }
 
 body, .topic-item p {
-    font-size: 1.05em; /* Ligeiro aumento na fonte do corpo */
-    line-height: 1.7; /* Aumenta a altura da linha */
+    font-size: 1.05em; 
+    line-height: 1.7; 
 }
 .topic-item p {
-    color: var(--text-dark); /* Usa o texto escuro principal ao invés do muted, para maior contraste */
+    color: var(--text-dark); 
 }
 .hidden-content {
     display: none;
@@ -362,7 +362,7 @@ body.content-active .topics-container {
 .map-container {
     position: relative;
     overflow: hidden;
-    padding-top: 56.25%; /* Proporção 16:9 */
+    padding-top: 56.25%; 
     height: 0;
     margin: 20px auto; 
     border-radius: 8px;
@@ -437,14 +437,14 @@ body.content-active .topics-container {
 }
 
 .quiz-options label.correct {
-    background-color: #d8f3e5; /* Verde claro */
+    background-color: #d8f3e5; 
     border-color: var(--color-correct);
     font-weight: bold;
     color: var(--color-correct);
 }
 
 .quiz-options label.incorrect {
-    background-color: #fcebeb; /* Vermelho claro */
+    background-color: #fcebeb; 
     border-color: var(--color-incorrect);
     font-weight: bold;
     color: var(--color-incorrect);
@@ -534,11 +534,11 @@ body.content-active .topics-container {
     padding-left: 50px; 
 }
 .timeline-event::before {
-    content: '•'; /* Usa o caractere de ponto */
+    content: '•'; 
     position: absolute;
     top: 0px; 
-    left: 20px; /* marcador */
-    font-size: 2.5em; /* marcador */
+    left: 20px; 
+    font-size: 2.5em; 
     line-height: 1;
     color: var(--green-dark); 
     z-index: 1; 
@@ -592,7 +592,7 @@ body.content-active .topics-container {
 
 .slider-image {
     width: 100%;
-    height: 250px; /* Altura fixa para as imagens */
+    height: 250px; 
     object-fit: cover;
 }
 
@@ -701,10 +701,8 @@ body.content-active .topics-container {
     width: 100%;
     padding: 15px;
     font-size: 1.1em;
-    /* Usa a mesma classe .cta para consistência */
 }
 
-/* agradecimento */
 #feedback-message {
     text-align: center;
     padding: 20px;
@@ -713,7 +711,7 @@ body.content-active .topics-container {
     border-radius: 8px;
     margin-top: 20px;
     font-weight: bold;
-    display: none; /* Escondido por padrão */
+    display: none; 
 }
 
 #equipe.hidden-content {
@@ -775,7 +773,6 @@ body.content-active .topics-container {
 }
 
 
-/* === rodape === */
 .footer-copyright {
     width: 100%;
     text-align: center;
@@ -794,7 +791,6 @@ body.content-active .topics-container {
     margin-top: 5px;
 }
 
-/* === RESPONSIVIDADE (MOBILE) === */
 @media screen and (max-width: 768px) {
     
     .splash-header { 
@@ -805,7 +801,6 @@ body.content-active .topics-container {
     
     .splash-header-titles h1 { font-size: 1.6em; }
     
-    /* OCULTA/EXIBE NAVEGAÇÃO em mobile */
     .splash-nav { display: none; }
     body.content-active .splash-nav { 
         display: flex; 
@@ -832,25 +827,22 @@ body.content-active .topics-container {
     
     .cta#comecar-btn, .cta, #start-quiz-btn, .gallery-btn { padding: 13px 35px; font-size: 0.95em; }
     
-    /* NOVO: Centraliza o botão Iniciar Quiz no Mobile */
     #start-quiz-btn {
-        display: block; /* Permite que margin: auto funcione */
-        width: fit-content; /* Reduz a largura para o tamanho do conteúdo */
-        margin: 15px auto 0; /* Centraliza horizontalmente */
+        display: block; 
+        width: fit-content; 
+        margin: 15px auto 0; 
     }
 
     body.content-active .topics-container {
         padding-top: 190px; 
     }
     
-    /* Ajustes dos Tópicos (MANTÉM padding normal) */
     .topics-container { padding: 30px 15px; }
     .topic-grid { max-width: 95%; gap: 20px; }
     .topic-item { padding: 30px; }
     .topic-title { font-size: 1.8em; }
-    .topic-item p { font-size: 1.05em; } /* Mantém a fonte ligeiramente maior */
+    .topic-item p { font-size: 1.05em; } 
     
-    /* AJUSTE MOBILE DA LINHA DO TEMPO VERSÃO B (Ponto •) */
     .timeline-container {
         padding-left: 0; 
     }
@@ -870,12 +862,10 @@ body.content-active .topics-container {
         padding-left: 0; 
     }
     
-    /* Ajuste de altura para vídeos mobile */
     .video-container iframe {
         height: 200px; 
     }
     
-    /* Ajustes para o Quiz Mobile */
     .quiz-options label {
         padding: 10px;
     }
@@ -887,7 +877,6 @@ body.content-active .topics-container {
         font-size: 1.8em;
     }
     
-    /* Ajustes para o Slider Mobile */
     .slider-image {
         height: 200px;
     }
@@ -898,7 +887,6 @@ body.content-active .topics-container {
         font-size: 1.2em;
     }
     
-    /* Ajustes da Equipe */
     #equipe.team-section-style { padding: 50px 4%; }
     #equipe h2 { font-size: 2em; margin-bottom: 30px; }
     .team-container { justify-content: center; gap: 30px 15px; } 
@@ -910,7 +898,7 @@ body.content-active .topics-container {
     .team-member p { font-size: 0.85em; }
     
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Imagens menores no mobile */
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
     }
     .gallery-item img {
         height: 120px;
@@ -925,45 +913,41 @@ body.content-active .topics-container {
         padding-top: 220px; 
     }
 }
-/* styles.css - DENTRO DE @media screen and (max-width: 768px) */
 
 @media screen and (max-width: 768px) {
  
     .splash-header.shrink {
         padding-top: 3px; 
         padding-bottom: 3px;
-        min-height: 30px; /* Altura mínima bem reduzida */
+        min-height: 30px; 
     }
 
-    /* 2. Compacta os Títulos  */
-    .splash-header.shrink .splash-header-titles h1 {
-        font-size: 0.9em; /* Título bem pequeno */
+        .splash-header.shrink .splash-header-titles h1 {
+        font-size: 0.9em; 
         line-height: 1;
-        margin-bottom: 0; /* Remove a margem extra */
+        margin-bottom: 0;
         transition: font-size 0.4s ease;
     }
     .splash-header.shrink .splash-header-titles p {
-        font-size: 0.7em; /* Subtítulo minúsculo */
+        font-size: 0.7em; 
         line-height: 1;
-        margin-top: 0; /* Remove a margem extra */
+        margin-top: 0; 
         transition: font-size 0.4s ease;
     }
     
-    /* 3. Compacta a Navegação */
     .splash-header.shrink .splash-nav {
-        gap: 5px -5px; /* Espaço entre os links menor */
+        gap: 5px -5px; 
         margin-top: -9px;
     }
     .splash-header.shrink .splash-nav a {
-        font-size: 0.6em; /* Links bem pequenos */
+        font-size: 0.6em; 
         padding: 3px 3px;
         padding-top: 3px; 
         transition: font-size 0.4s ease;
     }
     
-    /* 4. Ajusta a compensação do conteúdo para o novo tamanho */
-    body.content-active .topics-container {
-        padding-top: 260px !important; /* Valor corrigido para compensar a barra pequena */
+        body.content-active .topics-container {
+        padding-top: 260px !important; 
     }
     
 }
