@@ -996,3 +996,50 @@ body.content-active .topics-container {
         padding-top: 220px; 
     }
 }
+/* styles.css - DENTRO DE @media screen and (max-width: 768px) */
+
+@media screen and (max-width: 768px) {
+    /* ... (suas regras existentes para mobile) ... */
+    
+    /* REGRAS DE COMPACTAÇÃO NO MOBILE QUANDO A CLASSE .shrink É ADICIONADA */
+    
+    /* 1. COMPACTAÇÃO DA ALTURA E PADDING do cabeçalho fixo */
+    .splash-header.shrink {
+        padding-top: 3px; 
+        padding-bottom: 3px;
+        min-height: 30px; /* Altura mínima bem reduzida */
+    }
+
+    /* 2. Compacta os Títulos (FESTIVAL MUNDO PAÍS DE GALES) */
+    .splash-header.shrink .splash-header-titles h1 {
+        font-size: 0.9em; /* Título bem pequeno */
+        line-height: 1;
+        margin-bottom: 0; /* Remove a margem extra */
+        transition: font-size 0.4s ease;
+    }
+    .splash-header.shrink .splash-header-titles p {
+        font-size: 0.7em; /* Subtítulo minúsculo */
+        line-height: 1;
+        margin-top: 0; /* Remove a margem extra */
+        transition: font-size 0.4s ease;
+    }
+    
+    /* 3. Compacta a Navegação */
+    .splash-header.shrink .splash-nav {
+        gap: 5px -5px; /* Espaço entre os links menor */
+        margin-top: -9px;
+    }
+    .splash-header.shrink .splash-nav a {
+        font-size: 0.6em; /* Links bem pequenos */
+        padding: 3px 3px;
+        padding-top: 3px; 
+        transition: font-size 0.4s ease;
+    }
+    
+    /* 4. Ajusta a compensação do conteúdo para o novo tamanho */
+    body.content-active .topics-container {
+        padding-top: 260px !important; /* Valor corrigido para compensar a barra pequena */
+    }
+    
+    /* ... (restante do seu código) ... */
+}

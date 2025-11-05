@@ -185,27 +185,40 @@ window.onload = function() {
         quizSection.scrollIntoView({ behavior: 'smooth' });
     }
     
-    // --- FUNÇÕES DE FEEDBACK ---
+    // --- FUNÇÕES DE FEEDBACK (MODIFICADAS PARA USAR AJAX E EVITAR REDIRECIONAMENTO) ---
     if (feedbackForm) {
-        feedbackForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+        feedbackForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // <-- ISSO IMPEDE O REDIRECIONAMENTO DO FORMSPREE!
             
-            const feedbackText = document.getElementById('texto-feedback').value.trim();
+            const form = e.target;
+            const data = new FormData(form);
             
-            if (feedbackText === "") {
-                alert('Por favor, escreva seu feedback antes de enviar.');
-                return;
+            try {
+                // Envia os dados para o Formspree via AJAX
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        // É importante para o Formspree reconhecer a submissão AJAX
+                        'Accept': 'application/json' 
+                    }
+                });
+
+                if (response.ok) {
+                    // Sucesso: Esconde o formulário e mostra a mensagem local
+                    form.style.display = 'none';
+                    feedbackMessage.style.display = 'block';
+                    feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    // Falha no envio (ex: campos obrigatórios faltando, erro do Formspree)
+                    alert("Ops! Houve um erro ao enviar seu feedback. Por favor, tente novamente mais tarde.");
+                    console.error("Erro de submissão do Formspree:", response.status);
+                }
+            } catch (error) {
+                // Erro de rede (ex: sem internet)
+                alert("Erro de conexão. Por favor, verifique sua rede e tente novamente.");
+                console.error("Erro de rede:", error);
             }
-            
-            console.log("Feedback Enviado:", {
-                nome: document.getElementById('nome-feedback').value,
-                feedback: feedbackText
-            });
-            
-            feedbackForm.style.display = 'none';
-            feedbackMessage.style.display = 'block';
-            
-            feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
     }
     
