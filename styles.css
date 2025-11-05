@@ -6,6 +6,7 @@
     max-width: 100%;
 }
 
+/* === VARIÁVEIS DE COR === */
 :root {
   --red-header: #7f1818; 
   --cream-bg: #f5eadf; 
@@ -19,30 +20,35 @@
   --text-header-nav-hover: #ffffff;
   --icon-red: var(--red-header);
   --icon-green: var(--green-dark);
-    --color-correct: #38a169; 
-  --color-incorrect: #e53e3e; 
+  /* NOVAS VARIÁVEIS DE QUIZ */
+  --color-correct: #38a169; /* Verde para acerto */
+  --color-incorrect: #e53e3e; /* Vermelho para erro */
   --color-quiz-border: #ccc;
   --color-option-hover: #f0f0f0;
   
-    --color-accent-link: var(--red-header); 
+  /* NOVAS VARIÁVEIS GERAIS E DE FORMULÁRIO/GALERIA */
+  --color-accent-link: var(--red-header); /* Cor dos links clicáveis */
   --form-bg: var(--cream-light);
   --form-border: #dcdcdc;
 }
 
+/* === ESTILO: SCROLLBAR PERSONALIZADA === */
+/* Para navegadores baseados em WebKit (Chrome, Safari) */
 ::-webkit-scrollbar {
-    width: 8px; 
-    background-color: var(--cream-bg); 
+    width: 8px; /* Largura da barra de rolagem */
+    background-color: var(--cream-bg); /* Cor do fundo da trilha */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--green-dark); 
-    border-radius: 4px; 
-    border: 1px solid var(--cream-bg); 
+    background-color: var(--green-dark); /* Cor do "polegar" (a parte que se move) */
+    border-radius: 4px; /* Bordas arredondadas no polegar */
+    border: 1px solid var(--cream-bg); /* Pequena borda para separação visual */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--green-dark-2); 
+    background-color: var(--green-dark-2); /* Cor ao passar o mouse */
 }
+/* FIM DO ESTILO DA SCROLLBAR */
 
 
 body {
@@ -58,17 +64,23 @@ body {
     width: 100%;
 }
 
+/* === AJUSTE DE TIPOGRAFIA PARA MELHOR LEITURA === */
+/* Aumenta a fonte base para melhorar a leitura */
 body, .topic-item p {
-    font-size: 1.05em; 
-    line-height: 1.7; 
+    font-size: 1.05em; /* Ligeiro aumento na fonte do corpo */
+    line-height: 1.7; /* Aumenta a altura da linha */
 }
 .topic-item p {
-    color: var(--text-dark); 
+    color: var(--text-dark); /* Usa o texto escuro principal ao invés do muted, para maior contraste */
 }
+/* === FIM DO AJUSTE DE TIPOGRAFIA === */
+
+/* === CRÍTICO: CLASSE PARA ESCONDER O CONTEÚDO INICIALMENTE (USADA NO HTML) === */
 .hidden-content {
     display: none;
 }
 
+/* === ESTILOS DA SPLASH SCREEN === */
 #splash-screen {
     width: 100%; 
     min-height: 100vh;
@@ -78,6 +90,7 @@ body, .topic-item p {
     font-family: 'Lato', Arial, sans-serif;
 }
 
+/* Cabeçalho (Estilo Padrão - GRANDE E NÃO FIXO) */
 .splash-header {
     background-color: var(--red-header); color: var(--cream-light);
     padding: 15px 5%;
@@ -91,6 +104,7 @@ body, .topic-item p {
     background-image: none;
 }
 
+/* Navegação: OCULTA POR PADRÃO */
 .splash-nav { 
     display: none; 
     flex-wrap: wrap; 
@@ -98,6 +112,7 @@ body, .topic-item p {
     justify-content: center; 
 }
 
+/* NOVO: Exibe a navegação e fixa o cabeçalho APENAS quando o corpo tem a classe 'content-active' */
 body.content-active .splash-nav {
     display: flex;
 }
@@ -108,6 +123,7 @@ body.content-active .splash-header {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
+/* Estilo para o estado 'encolhido' (.shrink), aplicado pelo JS ao COMEÇAR */
 .splash-header.shrink {
     padding-top: 5px; 
     padding-bottom: 5px;
@@ -116,6 +132,7 @@ body.content-active .splash-header {
     background-image: none;
 }
 
+/* Estilos para reduzir texto/navegação no estado shrink */
 .splash-header.shrink .splash-header-titles h1 {
     font-size: clamp(1.6em, 3.5vw, 2em); 
     transition: font-size 0.4s ease;
@@ -129,6 +146,7 @@ body.content-active .splash-header {
     transition: font-size 0.4s ease;
 }
 
+/* Centraliza o conteúdo */
 .splash-header-center {
     position: relative; 
     z-index: 2; 
@@ -163,12 +181,15 @@ body.content-active .splash-header {
 .splash-nav a:hover::after { width: 100%; }
 .splash-header-placeholder { width: 35px; flex-shrink: 0; visibility: hidden; } 
 
+/* Conteúdo Principal da Splash (2 Colunas) */
 .splash-main {
     flex-grow: 1; display: flex; justify-content: center; align-items: center;
     padding: 50px 8%; gap: 70px;
     margin-top: 0; 
 }
 
+/* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo */
+/* AJUSTE MAIOR PARA DESKTOP/TABLET: 160PX */
 body.content-active .topics-container {
     padding-top: 160px; 
 }
@@ -179,6 +200,7 @@ body.content-active .topics-container {
 }
 .splash-dragon { width: 100%; max-width: 300px; height: auto; margin-bottom: 35px; }
 
+/* BOTÃO COMEÇAR */
 .cta#comecar-btn, .cta, #start-quiz-btn, .gallery-btn {
     display: inline-block; background: var(--green-dark); color: #fff;
     padding: 14px 34px; border-radius: 8px; font-size: 16px; font-weight: bold;
@@ -209,6 +231,7 @@ body.content-active .topics-container {
     color: var(--muted); line-height: 1.7; margin-bottom: 0;
 }
 
+/* === ESTILO: SEÇÃO DE TÓPICOS === */
 .topics-container {
     background-color: var(--cream-footer-bg); 
     padding: 60px 8%; 
@@ -248,6 +271,7 @@ body.content-active .topics-container {
     text-transform: uppercase;
 }
 
+/* === NOVO ESTILO: LINKS DE INTERESSE === */
 .links-de-interesse-list {
     list-style: none;
     padding: 0;
@@ -255,6 +279,7 @@ body.content-active .topics-container {
 }
 .links-de-interesse-list li {
     margin-bottom: 15px;
+    /* Linha sutil de separação */
     border-bottom: 1px dashed var(--form-border); 
     padding-bottom: 10px;
 }
@@ -273,6 +298,9 @@ body.content-active .topics-container {
     color: var(--green-dark);
     text-decoration: underline;
 }
+/* === FIM DO ESTILO: LINKS DE INTERESSE === */
+
+/* === NOVO ESTILO: O PAÍS DE GALES HOJE (Situação Atual) === */
 .wales-hoje-content {
     margin-top: 20px;
     display: flex;
@@ -301,6 +329,9 @@ body.content-active .topics-container {
     margin-bottom: 0;
     font-size: 1.05em;
 }
+/* === FIM DO ESTILO: O PAÍS DE GALES HOJE === */
+
+/* === ESTILO PARA TÓPICOS COM IMAGEM (POESIA, ARTE, CULTURA, CULINÁRIA) === */
 .topic-item.with-image {
     display: flex;
     flex-direction: column; 
@@ -326,6 +357,7 @@ body.content-active .topics-container {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* --- ESTILOS DE MÍDIA (MÚSICA) --- */
 .audio-container, .video-container {
     margin-top: 30px; 
     margin-bottom: 25px;
@@ -349,12 +381,16 @@ body.content-active .topics-container {
     margin: 0 auto;
 }
 
+/* Garante que o iframe (vídeo do YouTube) seja responsivo */
 .video-container iframe {
     width: 100%;
     height: 315px; 
     display: block;
     border-radius: 6px;
 }
+/* --- FIM DOS ESTILOS DE MÍDIA (MÚSICA) --- */
+
+/* --- ESTILO: MAPA INTERATIVO --- */
 .map-item {
     text-align: center;
 }
@@ -362,7 +398,7 @@ body.content-active .topics-container {
 .map-container {
     position: relative;
     overflow: hidden;
-    padding-top: 56.25%; 
+    padding-top: 56.25%; /* Proporção 16:9 */
     height: 0;
     margin: 20px auto; 
     border-radius: 8px;
@@ -384,6 +420,9 @@ body.content-active .topics-container {
     color: var(--muted);
     margin-top: 15px;
 }
+/* --- FIM DO ESTILO: MAPA INTERATIVO --- */
+
+/* --- NOVO ESTILO: QUIZ INTERATIVO --- */
 .quiz-item {
     text-align: left;
 }
@@ -401,12 +440,15 @@ body.content-active .topics-container {
     font-family: 'Roboto Slab', serif;
     color: var(--green-dark-2);
     font-size: 1.3em;
-    margin-bottom: 
+    margin-bottom: 15px;
+}
 
+/* Container que envolve o conteúdo, sem rolagem interna forçada */
 #quiz-content-wrapper {
     padding: 0 5px; 
 }
 
+/* Estilo para que o container das perguntas seja rolado se o wrapper tiver limite */
 #quiz-container {
     padding-right: 15px; 
 }
@@ -436,20 +478,22 @@ body.content-active .topics-container {
     accent-color: var(--green-dark); 
 }
 
+/* Estilos de feedback (Acerto e Erro) */
 .quiz-options label.correct {
-    background-color: #d8f3e5; 
+    background-color: #d8f3e5; /* Verde claro */
     border-color: var(--color-correct);
     font-weight: bold;
     color: var(--color-correct);
 }
 
 .quiz-options label.incorrect {
-    background-color: #fcebeb; 
+    background-color: #fcebeb; /* Vermelho claro */
     border-color: var(--color-incorrect);
     font-weight: bold;
     color: var(--color-incorrect);
 }
 
+/* Desabilita hover após o envio */
 .quiz-question.answered .quiz-options label:hover {
     background-color: #fff;
     cursor: default;
@@ -491,6 +535,10 @@ body.content-active .topics-container {
     width: auto;
 }
 
+/* --- FIM DO NOVO ESTILO: QUIZ INTERATIVO --- */
+
+
+/* === ESTILO: DESTAQUE DE POESIA === */
 .poesia-quote {
     margin-top: 30px;
     padding: 20px;
@@ -517,6 +565,10 @@ body.content-active .topics-container {
     margin-top: 10px;
     font-size: 0.95em;
 }
+/* --- FIM DE DESTAQUE DE POESIA --- */
+
+
+/* === NOVO ESTILO: LINHA DO TEMPO (HISTÓRIA) - VERSÃO SIMPLIFICADA (PONTO •) === */
 .timeline-item {
     padding-bottom: 20px; 
 }
@@ -525,26 +577,30 @@ body.content-active .topics-container {
     padding-top: 10px;
     padding-left: 0; 
 }
+/* A LINHA VERTICAL (REMOVIDA) */
 .timeline-container::before {
     content: none; 
 }
 .timeline-event {
     position: relative;
     margin-bottom: 30px;
+    /* Empurra o conteúdo para a direita para dar espaço ao ponto e à data */
     padding-left: 50px; 
 }
+/* O MARCADOR (PONTO •) NA LINHA DO TEMPO */
 .timeline-event::before {
-    content: '•'; 
+    content: '•'; /* Usa o caractere de ponto */
     position: absolute;
     top: 0px; 
-    left: 20px; 
-    font-size: 2.5em; 
+    left: 20px; /* Posição fixa para o marcador */
+    font-size: 2.5em; /* Tamanho grande para parecer um marcador */
     line-height: 1;
     color: var(--green-dark); 
     z-index: 1; 
 }
 
 .timeline-date {
+    /* CORREÇÃO DA FONTE: Usando 'Roboto Slab' para um visual mais clean e sólido para a data/números */
     font-family: 'Roboto Slab', serif; 
     font-weight: 700;
     color: var(--red-header);
@@ -563,26 +619,30 @@ body.content-active .topics-container {
 }
 .timeline-content p {
     font-size: 1.0em;
-    color: var(--text-dark); 
+    color: var(--text-dark); /* Ajustado para melhor leitura */
 }
+/* --- FIM DO ESTILO: LINHA DO TEMPO VERSÃO B --- */
+
+
+/* === ESTILO: SLIDER DE IMAGENS (ARTE) === */
 .slider-container {
     position: relative;
-    overflow: hidden; 
+    overflow: hidden; /* Esconde imagens que não estão ativas */
     width: 100%;
-    max-width: 650px; 
+    max-width: 650px; /* Limite de largura para o slider */
     margin: 20px auto 0;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .slider-wrapper {
-    display: flex;
-    transition: transform 0.5s ease-in-out; 
+    display: flex; /* Permite que os itens fiquem lado a lado */
+    transition: transform 0.5s ease-in-out; /* Adiciona animação à transição */
     width: 100%;
 }
 
 .slider-item {
-    min-width: 100%;
+    min-width: 100%; /* Cada item ocupa 100% da largura do wrapper */
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -592,8 +652,8 @@ body.content-active .topics-container {
 
 .slider-image {
     width: 100%;
-    height: 250px; 
-    object-fit: cover;
+    height: 250px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
 }
 
 .slider-text {
@@ -613,6 +673,7 @@ body.content-active .topics-container {
     color: var(--text-dark);
 }
 
+/* Estilo dos Botões de Navegação */
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -641,7 +702,9 @@ body.content-active .topics-container {
     right: 10px;
     border-radius: 5px 0 0 5px;
 }
+/* --- FIM DO SLIDER DE IMAGENS --- */
 
+/* === NOVO ESTILO: FORMULÁRIO DE FEEDBACK === */
 .feedback-form-container {
     padding: 30px;
     background-color: var(--form-bg);
@@ -701,8 +764,10 @@ body.content-active .topics-container {
     width: 100%;
     padding: 15px;
     font-size: 1.1em;
+    /* Usa a mesma classe .cta para consistência */
 }
 
+/* Estilo para a mensagem de agradecimento */
 #feedback-message {
     text-align: center;
     padding: 20px;
@@ -711,9 +776,11 @@ body.content-active .topics-container {
     border-radius: 8px;
     margin-top: 20px;
     font-weight: bold;
-    display: none; 
+    display: none; /* Escondido por padrão */
 }
+/* === FIM DO ESTILO: FORMULÁRIO DE FEEDBACK === */
 
+/* === ESTILO: SEÇÃO DE EQUIPE (INTEGRANTES) === */
 #equipe.hidden-content {
     display: none;
 }
@@ -773,6 +840,7 @@ body.content-active .topics-container {
 }
 
 
+/* === ESTILO: RODAPÉ DE COPYRIGHT === */
 .footer-copyright {
     width: 100%;
     text-align: center;
@@ -791,6 +859,7 @@ body.content-active .topics-container {
     margin-top: 5px;
 }
 
+/* === RESPONSIVIDADE (MOBILE) === */
 @media screen and (max-width: 768px) {
     
     .splash-header { 
@@ -801,6 +870,7 @@ body.content-active .topics-container {
     
     .splash-header-titles h1 { font-size: 1.6em; }
     
+    /* OCULTA/EXIBE NAVEGAÇÃO em mobile */
     .splash-nav { display: none; }
     body.content-active .splash-nav { 
         display: flex; 
@@ -820,6 +890,7 @@ body.content-active .topics-container {
     .splash-main-left { order: 2; flex-basis: auto; width: 100%; align-items: center; margin-top: 0;}
     .splash-main-right { order: 1; flex-basis: auto; width: 100%; text-align: center; }
     
+    /* MODIFICADO: AUMENTA MAIS O DRAGÃO CENTRAL */
     .splash-dragon { 
         max-width: 250px; 
         margin-bottom: 35px; 
@@ -827,22 +898,27 @@ body.content-active .topics-container {
     
     .cta#comecar-btn, .cta, #start-quiz-btn, .gallery-btn { padding: 13px 35px; font-size: 0.95em; }
     
+    /* NOVO: Centraliza o botão Iniciar Quiz no Mobile */
     #start-quiz-btn {
-        display: block; 
-        width: fit-content; 
-        margin: 15px auto 0; 
+        display: block; /* Permite que margin: auto funcione */
+        width: fit-content; /* Reduz a largura para o tamanho do conteúdo */
+        margin: 15px auto 0; /* Centraliza horizontalmente */
     }
 
+    /* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo (mobile) */
+    /* AJUSTE FINAL MOBILE: AUMENTADO PARA 190PX */
     body.content-active .topics-container {
         padding-top: 190px; 
     }
     
+    /* Ajustes dos Tópicos (MANTÉM padding normal) */
     .topics-container { padding: 30px 15px; }
     .topic-grid { max-width: 95%; gap: 20px; }
     .topic-item { padding: 30px; }
     .topic-title { font-size: 1.8em; }
-    .topic-item p { font-size: 1.05em; } 
+    .topic-item p { font-size: 1.05em; } /* Mantém a fonte ligeiramente maior */
     
+    /* AJUSTE MOBILE DA LINHA DO TEMPO VERSÃO B (Ponto •) */
     .timeline-container {
         padding-left: 0; 
     }
@@ -850,6 +926,7 @@ body.content-active .topics-container {
         content: none;
     }
     .timeline-event {
+        /* Empurra o conteúdo para a direita para dar espaço ao ponto e à data */
         padding-left: 40px; 
     }
     .timeline-event::before {
@@ -862,10 +939,12 @@ body.content-active .topics-container {
         padding-left: 0; 
     }
     
+    /* Ajuste de altura para vídeos mobile */
     .video-container iframe {
         height: 200px; 
     }
     
+    /* Ajustes para o Quiz Mobile */
     .quiz-options label {
         padding: 10px;
     }
@@ -877,6 +956,7 @@ body.content-active .topics-container {
         font-size: 1.8em;
     }
     
+    /* Ajustes para o Slider Mobile */
     .slider-image {
         height: 200px;
     }
@@ -887,6 +967,7 @@ body.content-active .topics-container {
         font-size: 1.2em;
     }
     
+    /* Ajustes da Equipe (Mobile) */
     #equipe.team-section-style { padding: 50px 4%; }
     #equipe h2 { font-size: 2em; margin-bottom: 30px; }
     .team-container { justify-content: center; gap: 30px 15px; } 
@@ -897,8 +978,9 @@ body.content-active .topics-container {
     }
     .team-member p { font-size: 0.85em; }
     
+    /* Galeria Mobile */
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Imagens menores no mobile */
     }
     .gallery-item img {
         height: 120px;
@@ -908,46 +990,56 @@ body.content-active .topics-container {
 @media screen and (max-width: 380px) {
     .team-member img { width: 70px; height: 70px; }
     .team-member p { font-size: 0.8em; }
-     
+    
+    /* AJUSTE FINAL PARA TELAS PEQUENAS: AUMENTADO PARA 220PX */
     body.content-active .topics-container {
         padding-top: 220px; 
     }
 }
+/* styles.css - DENTRO DE @media screen and (max-width: 768px) */
 
 @media screen and (max-width: 768px) {
- 
+    /* ... (suas regras existentes para mobile) ... */
+    
+    /* REGRAS DE COMPACTAÇÃO NO MOBILE QUANDO A CLASSE .shrink É ADICIONADA */
+    
+    /* 1. COMPACTAÇÃO DA ALTURA E PADDING do cabeçalho fixo */
     .splash-header.shrink {
         padding-top: 3px; 
         padding-bottom: 3px;
-        min-height: 30px; 
+        min-height: 30px; /* Altura mínima bem reduzida */
     }
 
-        .splash-header.shrink .splash-header-titles h1 {
-        font-size: 0.9em; 
+    /* 2. Compacta os Títulos (FESTIVAL MUNDO PAÍS DE GALES) */
+    .splash-header.shrink .splash-header-titles h1 {
+        font-size: 0.9em; /* Título bem pequeno */
         line-height: 1;
-        margin-bottom: 0;
+        margin-bottom: 0; /* Remove a margem extra */
         transition: font-size 0.4s ease;
     }
     .splash-header.shrink .splash-header-titles p {
-        font-size: 0.7em; 
+        font-size: 0.7em; /* Subtítulo minúsculo */
         line-height: 1;
-        margin-top: 0; 
+        margin-top: 0; /* Remove a margem extra */
         transition: font-size 0.4s ease;
     }
     
+    /* 3. Compacta a Navegação */
     .splash-header.shrink .splash-nav {
-        gap: 5px -5px; 
+        gap: 5px -5px; /* Espaço entre os links menor */
         margin-top: -9px;
     }
     .splash-header.shrink .splash-nav a {
-        font-size: 0.6em; 
+        font-size: 0.6em; /* Links bem pequenos */
         padding: 3px 3px;
         padding-top: 3px; 
         transition: font-size 0.4s ease;
     }
     
-        body.content-active .topics-container {
-        padding-top: 260px !important; 
+    /* 4. Ajusta a compensação do conteúdo para o novo tamanho */
+    body.content-active .topics-container {
+        padding-top: 260px !important; /* Valor corrigido para compensar a barra pequena */
     }
     
+    /* ... (restante do seu código) ... */
 }
