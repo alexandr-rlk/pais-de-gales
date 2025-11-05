@@ -9,7 +9,6 @@ window.onload = function() {
     const header = document.querySelector('.splash-header'); 
     const body = document.body;
     
-    // Elementos do quiz
     const quizSection = document.getElementById('quiz-interativo'); 
     const startQuizBtn = document.getElementById('start-quiz-btn'); 
     const quizContentWrapper = document.getElementById('quiz-content-wrapper'); 
@@ -18,11 +17,9 @@ window.onload = function() {
     const resultsMessage = document.getElementById('results-message');
     const resultsScore = document.getElementById('results-score');
     
-    // Elementos do feedback
     const feedbackForm = document.getElementById('feedback-form');
     const feedbackMessage = document.getElementById('feedback-message');
     
-    // Elementos do slider
     const sliderWrapper = document.querySelector('.slider-wrapper');
     const sliderItems = document.querySelectorAll('.slider-item');
     const prevBtn = document.getElementById('prev-slide');
@@ -30,7 +27,6 @@ window.onload = function() {
     let currentIndex = 0;
     const totalSlides = sliderItems.length;
 
-    // perguntas do quiz
     const quizQuestions = [
         {
             question: "Qual é o símbolo nacional do País de Gales, presente em sua bandeira?",
@@ -54,7 +50,6 @@ window.onload = function() {
         }
     ];
     
-    // --- FUNÇÕES DO QUIZ ---
     
     function startQuiz() {
         quizSection.scrollIntoView({ behavior: 'smooth' });
@@ -193,7 +188,6 @@ window.onload = function() {
             const data = new FormData(form);
             
             try {
-                // Envia para o Formspree
                 const response = await fetch(form.action, {
                     method: form.method,
                     body: data,
@@ -203,24 +197,19 @@ window.onload = function() {
                 });
 
                 if (response.ok) {
-                    // Esconde o formulário
                     form.style.display = 'none';
                     feedbackMessage.style.display = 'block';
                     feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
-                    // campos obrigatórios 
                     alert("Ops! Houve um erro ao enviar seu feedback. Por favor, tente novamente mais tarde.");
                     console.error("Erro de submissão do Formspree:", response.status);
                 }
             } catch (error) {
-                // sem internet)
                 alert("Erro de conexão. Por favor, verifique sua rede e tente novamente.");
                 console.error("Erro de rede:", error);
             }
         });
     }
-    
-    // --- slider ---
     
     function updateSlider() {
         const offset = -currentIndex * 100;
@@ -243,8 +232,6 @@ window.onload = function() {
         prevBtn.addEventListener('click', prevSlide);
         nextBtn.addEventListener('click', nextSlide);
     }
-
-    // --- scroll ---
     
     function hideContentAndScrollToTop() {
         topicsContainer.classList.add("hidden-content");
@@ -332,4 +319,4 @@ window.onload = function() {
     renderQuiz();
     startQuizBtn.addEventListener('click', startQuiz);
 
-}; // Fim de window.onload
+}; 
