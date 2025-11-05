@@ -9,7 +9,7 @@ window.onload = function() {
     const header = document.querySelector('.splash-header'); 
     const body = document.body;
     
-    // Elementos do Quiz
+    // Elementos do quiz
     const quizSection = document.getElementById('quiz-interativo'); 
     const startQuizBtn = document.getElementById('start-quiz-btn'); 
     const quizContentWrapper = document.getElementById('quiz-content-wrapper'); 
@@ -18,11 +18,11 @@ window.onload = function() {
     const resultsMessage = document.getElementById('results-message');
     const resultsScore = document.getElementById('results-score');
     
-    // Elementos do Feedback
+    // Elementos do feedback
     const feedbackForm = document.getElementById('feedback-form');
     const feedbackMessage = document.getElementById('feedback-message');
     
-    // Elementos do Slider
+    // Elementos do slider
     const sliderWrapper = document.querySelector('.slider-wrapper');
     const sliderItems = document.querySelectorAll('.slider-item');
     const prevBtn = document.getElementById('prev-slide');
@@ -30,7 +30,7 @@ window.onload = function() {
     let currentIndex = 0;
     const totalSlides = sliderItems.length;
 
-    // Array de Perguntas do Quiz
+    // perguntas do quiz
     const quizQuestions = [
         {
             question: "Qual é o símbolo nacional do País de Gales, presente em sua bandeira?",
@@ -185,44 +185,42 @@ window.onload = function() {
         quizSection.scrollIntoView({ behavior: 'smooth' });
     }
     
-    // --- FUNÇÕES DE FEEDBACK (MODIFICADAS PARA USAR AJAX E EVITAR REDIRECIONAMENTO) ---
     if (feedbackForm) {
         feedbackForm.addEventListener('submit', async function(e) {
-            e.preventDefault(); // <-- ISSO IMPEDE O REDIRECIONAMENTO DO FORMSPREE!
+            e.preventDefault(); 
             
             const form = e.target;
             const data = new FormData(form);
             
             try {
-                // Envia os dados para o Formspree via AJAX
+                // Envia para o Formspree
                 const response = await fetch(form.action, {
                     method: form.method,
                     body: data,
                     headers: {
-                        // É importante para o Formspree reconhecer a submissão AJAX
                         'Accept': 'application/json' 
                     }
                 });
 
                 if (response.ok) {
-                    // Sucesso: Esconde o formulário e mostra a mensagem local
+                    // Esconde o formulário
                     form.style.display = 'none';
                     feedbackMessage.style.display = 'block';
                     feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
-                    // Falha no envio (ex: campos obrigatórios faltando, erro do Formspree)
+                    // campos obrigatórios 
                     alert("Ops! Houve um erro ao enviar seu feedback. Por favor, tente novamente mais tarde.");
                     console.error("Erro de submissão do Formspree:", response.status);
                 }
             } catch (error) {
-                // Erro de rede (ex: sem internet)
+                // sem internet)
                 alert("Erro de conexão. Por favor, verifique sua rede e tente novamente.");
                 console.error("Erro de rede:", error);
             }
         });
     }
     
-    // --- FUNÇÕES DO SLIDER ---
+    // --- slider ---
     
     function updateSlider() {
         const offset = -currentIndex * 100;
@@ -246,7 +244,7 @@ window.onload = function() {
         nextBtn.addEventListener('click', nextSlide);
     }
 
-    // --- FUNÇÕES DE NAVEGAÇÃO E SCROLL ---
+    // --- scroll ---
     
     function hideContentAndScrollToTop() {
         topicsContainer.classList.add("hidden-content");
