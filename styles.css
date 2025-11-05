@@ -48,7 +48,7 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--green-dark-2); /* Cor ao passar o mouse */
 }
-/* FIM DO ESTILO DA SCROLLBAR */
+/* fim scrol */
 
 
 body {
@@ -64,7 +64,6 @@ body {
     width: 100%;
 }
 
-/* === AJUSTE DE TIPOGRAFIA PARA MELHOR LEITURA === */
 /* Aumenta a fonte base para melhorar a leitura */
 body, .topic-item p {
     font-size: 1.05em; /* Ligeiro aumento na fonte do corpo */
