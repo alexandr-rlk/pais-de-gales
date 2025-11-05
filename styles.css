@@ -6,7 +6,6 @@
     max-width: 100%;
 }
 
-/* === variaveus de cor === */
 :root {
   --red-header: #7f1818; 
   --cream-bg: #f5eadf; 
@@ -20,20 +19,16 @@
   --text-header-nav-hover: #ffffff;
   --icon-red: var(--red-header);
   --icon-green: var(--green-dark);
-  /* novas */
-  --color-correct: #38a169; /* Verde para acerto */
+    --color-correct: #38a169; /* Verde para acerto */
   --color-incorrect: #e53e3e; /* Vermelho para erro */
   --color-quiz-border: #ccc;
   --color-option-hover: #f0f0f0;
   
-  /* formulario */
-  --color-accent-link: var(--red-header); /* Cor dos links clicáveis */
+    --color-accent-link: var(--red-header); /* Cor dos links clicáveis */
   --form-bg: var(--cream-light);
   --form-border: #dcdcdc;
 }
 
-/* === scroll === */
-/* para safari */
 ::-webkit-scrollbar {
     width: 8px; /* largura*/
     background-color: var(--cream-bg); /* fundo trilha */
@@ -48,7 +43,6 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--green-dark-2); /* Cor ao passar o mouse */
 }
-/* fim scrol */
 
 
 body {
@@ -64,7 +58,6 @@ body {
     width: 100%;
 }
 
-/* Aumenta a fonte base para melhorar a leitura */
 body, .topic-item p {
     font-size: 1.05em; /* Ligeiro aumento na fonte do corpo */
     line-height: 1.7; /* Aumenta a altura da linha */
@@ -72,14 +65,10 @@ body, .topic-item p {
 .topic-item p {
     color: var(--text-dark); /* Usa o texto escuro principal ao invés do muted, para maior contraste */
 }
-/* === FIM DO AJUSTE DE TIPOGRAFIA === */
-
-/* === CRÍTICO: CLASSE PARA ESCONDER O CONTEÚDO INICIALMENTE (USADA NO HTML) === */
 .hidden-content {
     display: none;
 }
 
-/* === ESTILOS DA SPLASH SCREEN === */
 #splash-screen {
     width: 100%; 
     min-height: 100vh;
@@ -89,7 +78,6 @@ body, .topic-item p {
     font-family: 'Lato', Arial, sans-serif;
 }
 
-/* Cabeçalho (Estilo Padrão - GRANDE E NÃO FIXO) */
 .splash-header {
     background-color: var(--red-header); color: var(--cream-light);
     padding: 15px 5%;
@@ -103,7 +91,6 @@ body, .topic-item p {
     background-image: none;
 }
 
-/* Navegação: OCULTA POR PADRÃO */
 .splash-nav { 
     display: none; 
     flex-wrap: wrap; 
@@ -111,7 +98,6 @@ body, .topic-item p {
     justify-content: center; 
 }
 
-/* NOVO: Exibe a navegação e fixa o cabeçalho APENAS quando o corpo tem a classe 'content-active' */
 body.content-active .splash-nav {
     display: flex;
 }
@@ -122,7 +108,6 @@ body.content-active .splash-header {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Estilo para o estado 'encolhido' (.shrink), aplicado pelo JS ao COMEÇAR */
 .splash-header.shrink {
     padding-top: 5px; 
     padding-bottom: 5px;
@@ -131,7 +116,6 @@ body.content-active .splash-header {
     background-image: none;
 }
 
-/* Estilos para reduzir texto/navegação no estado shrink */
 .splash-header.shrink .splash-header-titles h1 {
     font-size: clamp(1.6em, 3.5vw, 2em); 
     transition: font-size 0.4s ease;
@@ -145,7 +129,6 @@ body.content-active .splash-header {
     transition: font-size 0.4s ease;
 }
 
-/* Centraliza o conteúdo */
 .splash-header-center {
     position: relative; 
     z-index: 2; 
@@ -180,15 +163,12 @@ body.content-active .splash-header {
 .splash-nav a:hover::after { width: 100%; }
 .splash-header-placeholder { width: 35px; flex-shrink: 0; visibility: hidden; } 
 
-/* Conteúdo Principal da Splash (2 Colunas) */
 .splash-main {
     flex-grow: 1; display: flex; justify-content: center; align-items: center;
     padding: 50px 8%; gap: 70px;
     margin-top: 0; 
 }
 
-/* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo */
-/* AJUSTE MAIOR PARA DESKTOP/TABLET: 160PX */
 body.content-active .topics-container {
     padding-top: 160px; 
 }
@@ -199,7 +179,6 @@ body.content-active .topics-container {
 }
 .splash-dragon { width: 100%; max-width: 300px; height: auto; margin-bottom: 35px; }
 
-/* BOTÃO COMEÇAR */
 .cta#comecar-btn, .cta, #start-quiz-btn, .gallery-btn {
     display: inline-block; background: var(--green-dark); color: #fff;
     padding: 14px 34px; border-radius: 8px; font-size: 16px; font-weight: bold;
@@ -230,7 +209,6 @@ body.content-active .topics-container {
     color: var(--muted); line-height: 1.7; margin-bottom: 0;
 }
 
-/* === ESTILO: SEÇÃO DE TÓPICOS === */
 .topics-container {
     background-color: var(--cream-footer-bg); 
     padding: 60px 8%; 
@@ -270,7 +248,6 @@ body.content-active .topics-container {
     text-transform: uppercase;
 }
 
-/* === NOVO ESTILO: LINKS DE INTERESSE === */
 .links-de-interesse-list {
     list-style: none;
     padding: 0;
@@ -278,7 +255,6 @@ body.content-active .topics-container {
 }
 .links-de-interesse-list li {
     margin-bottom: 15px;
-    /* Linha sutil de separação */
     border-bottom: 1px dashed var(--form-border); 
     padding-bottom: 10px;
 }
@@ -297,9 +273,6 @@ body.content-active .topics-container {
     color: var(--green-dark);
     text-decoration: underline;
 }
-/* === FIM DO ESTILO: LINKS DE INTERESSE === */
-
-/* === NOVO ESTILO: O PAÍS DE GALES HOJE (Situação Atual) === */
 .wales-hoje-content {
     margin-top: 20px;
     display: flex;
@@ -328,9 +301,6 @@ body.content-active .topics-container {
     margin-bottom: 0;
     font-size: 1.05em;
 }
-/* === FIM DO ESTILO: O PAÍS DE GALES HOJE === */
-
-/* === ESTILO PARA TÓPICOS COM IMAGEM (POESIA, ARTE, CULTURA, CULINÁRIA) === */
 .topic-item.with-image {
     display: flex;
     flex-direction: column; 
@@ -356,7 +326,6 @@ body.content-active .topics-container {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* --- ESTILOS DE MÍDIA (MÚSICA) --- */
 .audio-container, .video-container {
     margin-top: 30px; 
     margin-bottom: 25px;
@@ -380,16 +349,12 @@ body.content-active .topics-container {
     margin: 0 auto;
 }
 
-/* Garante que o iframe (vídeo do YouTube) seja responsivo */
 .video-container iframe {
     width: 100%;
     height: 315px; 
     display: block;
     border-radius: 6px;
 }
-/* --- FIM DOS ESTILOS DE MÍDIA (MÚSICA) --- */
-
-/* --- ESTILO: MAPA INTERATIVO --- */
 .map-item {
     text-align: center;
 }
@@ -419,9 +384,6 @@ body.content-active .topics-container {
     color: var(--muted);
     margin-top: 15px;
 }
-/* --- FIM DO ESTILO: MAPA INTERATIVO --- */
-
-/* --- NOVO ESTILO: QUIZ INTERATIVO --- */
 .quiz-item {
     text-align: left;
 }
@@ -439,15 +401,12 @@ body.content-active .topics-container {
     font-family: 'Roboto Slab', serif;
     color: var(--green-dark-2);
     font-size: 1.3em;
-    margin-bottom: 15px;
-}
+    margin-bottom: 
 
-/* Container que envolve o conteúdo, sem rolagem interna forçada */
 #quiz-content-wrapper {
     padding: 0 5px; 
 }
 
-/* Estilo para que o container das perguntas seja rolado se o wrapper tiver limite */
 #quiz-container {
     padding-right: 15px; 
 }
@@ -477,7 +436,6 @@ body.content-active .topics-container {
     accent-color: var(--green-dark); 
 }
 
-/* Estilos de feedback (Acerto e Erro) */
 .quiz-options label.correct {
     background-color: #d8f3e5; /* Verde claro */
     border-color: var(--color-correct);
@@ -492,7 +450,6 @@ body.content-active .topics-container {
     color: var(--color-incorrect);
 }
 
-/* Desabilita hover após o envio */
 .quiz-question.answered .quiz-options label:hover {
     background-color: #fff;
     cursor: default;
@@ -534,10 +491,6 @@ body.content-active .topics-container {
     width: auto;
 }
 
-/* --- FIM DO NOVO ESTILO: QUIZ INTERATIVO --- */
-
-
-/* === ESTILO: DESTAQUE DE POESIA === */
 .poesia-quote {
     margin-top: 30px;
     padding: 20px;
@@ -564,10 +517,6 @@ body.content-active .topics-container {
     margin-top: 10px;
     font-size: 0.95em;
 }
-/* --- FIM DE DESTAQUE DE POESIA --- */
-
-
-/* === NOVO ESTILO: LINHA DO TEMPO (HISTÓRIA) - VERSÃO SIMPLIFICADA (PONTO •) === */
 .timeline-item {
     padding-bottom: 20px; 
 }
@@ -576,30 +525,26 @@ body.content-active .topics-container {
     padding-top: 10px;
     padding-left: 0; 
 }
-/* A LINHA VERTICAL (REMOVIDA) */
 .timeline-container::before {
     content: none; 
 }
 .timeline-event {
     position: relative;
     margin-bottom: 30px;
-    /* Empurra o conteúdo para a direita para dar espaço ao ponto e à data */
     padding-left: 50px; 
 }
-/* O MARCADOR (PONTO •) NA LINHA DO TEMPO */
 .timeline-event::before {
     content: '•'; /* Usa o caractere de ponto */
     position: absolute;
     top: 0px; 
-    left: 20px; /* Posição fixa para o marcador */
-    font-size: 2.5em; /* Tamanho grande para parecer um marcador */
+    left: 20px; /* marcador */
+    font-size: 2.5em; /* marcador */
     line-height: 1;
     color: var(--green-dark); 
     z-index: 1; 
 }
 
 .timeline-date {
-    /* CORREÇÃO DA FONTE: Usando 'Roboto Slab' para um visual mais clean e sólido para a data/números */
     font-family: 'Roboto Slab', serif; 
     font-weight: 700;
     color: var(--red-header);
@@ -618,30 +563,26 @@ body.content-active .topics-container {
 }
 .timeline-content p {
     font-size: 1.0em;
-    color: var(--text-dark); /* Ajustado para melhor leitura */
+    color: var(--text-dark); 
 }
-/* --- FIM DO ESTILO: LINHA DO TEMPO VERSÃO B --- */
-
-
-/* === ESTILO: SLIDER DE IMAGENS (ARTE) === */
 .slider-container {
     position: relative;
-    overflow: hidden; /* Esconde imagens que não estão ativas */
+    overflow: hidden; 
     width: 100%;
-    max-width: 650px; /* Limite de largura para o slider */
+    max-width: 650px; 
     margin: 20px auto 0;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .slider-wrapper {
-    display: flex; /* Permite que os itens fiquem lado a lado */
-    transition: transform 0.5s ease-in-out; /* Adiciona animação à transição */
+    display: flex;
+    transition: transform 0.5s ease-in-out; 
     width: 100%;
 }
 
 .slider-item {
-    min-width: 100%; /* Cada item ocupa 100% da largura do wrapper */
+    min-width: 100%;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -652,7 +593,7 @@ body.content-active .topics-container {
 .slider-image {
     width: 100%;
     height: 250px; /* Altura fixa para as imagens */
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    object-fit: cover;
 }
 
 .slider-text {
@@ -672,7 +613,6 @@ body.content-active .topics-container {
     color: var(--text-dark);
 }
 
-/* Estilo dos Botões de Navegação */
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -701,9 +641,7 @@ body.content-active .topics-container {
     right: 10px;
     border-radius: 5px 0 0 5px;
 }
-/* --- FIM DO SLIDER DE IMAGENS --- */
 
-/* === NOVO ESTILO: FORMULÁRIO DE FEEDBACK === */
 .feedback-form-container {
     padding: 30px;
     background-color: var(--form-bg);
@@ -766,7 +704,7 @@ body.content-active .topics-container {
     /* Usa a mesma classe .cta para consistência */
 }
 
-/* Estilo para a mensagem de agradecimento */
+/* agradecimento */
 #feedback-message {
     text-align: center;
     padding: 20px;
@@ -777,9 +715,7 @@ body.content-active .topics-container {
     font-weight: bold;
     display: none; /* Escondido por padrão */
 }
-/* === FIM DO ESTILO: FORMULÁRIO DE FEEDBACK === */
 
-/* === ESTILO: SEÇÃO DE EQUIPE (INTEGRANTES) === */
 #equipe.hidden-content {
     display: none;
 }
@@ -839,7 +775,7 @@ body.content-active .topics-container {
 }
 
 
-/* === ESTILO: RODAPÉ DE COPYRIGHT === */
+/* === rodape === */
 .footer-copyright {
     width: 100%;
     text-align: center;
@@ -889,7 +825,6 @@ body.content-active .topics-container {
     .splash-main-left { order: 2; flex-basis: auto; width: 100%; align-items: center; margin-top: 0;}
     .splash-main-right { order: 1; flex-basis: auto; width: 100%; text-align: center; }
     
-    /* MODIFICADO: AUMENTA MAIS O DRAGÃO CENTRAL */
     .splash-dragon { 
         max-width: 250px; 
         margin-bottom: 35px; 
@@ -904,8 +839,6 @@ body.content-active .topics-container {
         margin: 15px auto 0; /* Centraliza horizontalmente */
     }
 
-    /* Aplica a compensação APENAS quando o conteúdo está ativo e o header está fixo (mobile) */
-    /* AJUSTE FINAL MOBILE: AUMENTADO PARA 190PX */
     body.content-active .topics-container {
         padding-top: 190px; 
     }
@@ -925,7 +858,6 @@ body.content-active .topics-container {
         content: none;
     }
     .timeline-event {
-        /* Empurra o conteúdo para a direita para dar espaço ao ponto e à data */
         padding-left: 40px; 
     }
     .timeline-event::before {
@@ -966,7 +898,7 @@ body.content-active .topics-container {
         font-size: 1.2em;
     }
     
-    /* Ajustes da Equipe (Mobile) */
+    /* Ajustes da Equipe */
     #equipe.team-section-style { padding: 50px 4%; }
     #equipe h2 { font-size: 2em; margin-bottom: 30px; }
     .team-container { justify-content: center; gap: 30px 15px; } 
@@ -977,7 +909,6 @@ body.content-active .topics-container {
     }
     .team-member p { font-size: 0.85em; }
     
-    /* Galeria Mobile */
     .gallery-grid {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Imagens menores no mobile */
     }
@@ -989,8 +920,7 @@ body.content-active .topics-container {
 @media screen and (max-width: 380px) {
     .team-member img { width: 70px; height: 70px; }
     .team-member p { font-size: 0.8em; }
-    
-    /* AJUSTE FINAL PARA TELAS PEQUENAS: AUMENTADO PARA 220PX */
+     
     body.content-active .topics-container {
         padding-top: 220px; 
     }
@@ -998,18 +928,14 @@ body.content-active .topics-container {
 /* styles.css - DENTRO DE @media screen and (max-width: 768px) */
 
 @media screen and (max-width: 768px) {
-    /* ... (suas regras existentes para mobile) ... */
-    
-    /* REGRAS DE COMPACTAÇÃO NO MOBILE QUANDO A CLASSE .shrink É ADICIONADA */
-    
-    /* 1. COMPACTAÇÃO DA ALTURA E PADDING do cabeçalho fixo */
+ 
     .splash-header.shrink {
         padding-top: 3px; 
         padding-bottom: 3px;
         min-height: 30px; /* Altura mínima bem reduzida */
     }
 
-    /* 2. Compacta os Títulos (FESTIVAL MUNDO PAÍS DE GALES) */
+    /* 2. Compacta os Títulos  */
     .splash-header.shrink .splash-header-titles h1 {
         font-size: 0.9em; /* Título bem pequeno */
         line-height: 1;
@@ -1040,5 +966,4 @@ body.content-active .topics-container {
         padding-top: 260px !important; /* Valor corrigido para compensar a barra pequena */
     }
     
-    /* ... (restante do seu código) ... */
 }
